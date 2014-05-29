@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeyLib", "HotkeyLib\Hotk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalHotkeyManager", "GlobalHotkeyManager\GlobalHotkeyManager.csproj", "{82410350-812B-420D-A6C8-03CF1937D5D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalHotkeyPluginLib", "GlobalHotkeyPluginLib\GlobalHotkeyPluginLib.csproj", "{BC16D7E1-F7CE-44CF-B33C-ADC26A0486F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GlobalHotkeyPlugins", "GlobalHotkeyPlugins", "{F8C71530-CB38-48F1-ABE0-25F550F7352A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowOrganizer", "HotkeyManagerPlugins\WindowOrganizer\WindowOrganizer.csproj", "{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +27,19 @@ Global
 		{82410350-812B-420D-A6C8-03CF1937D5D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82410350-812B-420D-A6C8-03CF1937D5D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82410350-812B-420D-A6C8-03CF1937D5D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC16D7E1-F7CE-44CF-B33C-ADC26A0486F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC16D7E1-F7CE-44CF-B33C-ADC26A0486F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC16D7E1-F7CE-44CF-B33C-ADC26A0486F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC16D7E1-F7CE-44CF-B33C-ADC26A0486F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9} = {F8C71530-CB38-48F1-ABE0-25F550F7352A}
 	EndGlobalSection
 EndGlobal
