@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowManager
+namespace nhammerl.GlobalHotkeyManager
 {
     internal static class Program
     {
@@ -15,6 +13,8 @@ namespace WindowManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Start BackgroundListener
             Application.Run(new GlobalKeyBackgroundListener());
         }
     }

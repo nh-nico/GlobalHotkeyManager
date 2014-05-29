@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("HotkeyLib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SSFCU")]
+[assembly: AssemblyCompany("nhammerl")]
 [assembly: AssemblyProduct("HotkeyLib")]
-[assembly: AssemblyCopyright("Copyright © SSFCU 2010")]
+[assembly: AssemblyCopyright("Copyright © nhammerl")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,4 +1,4 @@
-﻿namespace WindowManager
+﻿namespace nhammerl.GlobalHotkeyManager
 {
     partial class GlobalKeyBackgroundListener
     {

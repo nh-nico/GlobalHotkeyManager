@@ -1,5 +1,8 @@
-﻿namespace Hotkeys
+﻿namespace nhammerl.HotkeyLib
 {
+    /// <summary>
+    /// Key Constatnt modifiers
+    /// </summary>
     public static class KeyConstants
     {
         //modifiers

@@ -1,6 +1,6 @@
 using System.Windows.Forms;
 
-namespace WindowManager
+namespace nhammerl.GlobalHotkeyManager
 {
     public partial class GlobalKeyBackgroundListener : Form
     {

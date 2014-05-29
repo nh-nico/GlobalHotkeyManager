@@ -8,7 +8,7 @@
     <ProjectGuid>{09823DA8-C587-4363-95F1-CD99F4D0A678}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hotkeys</RootNamespace>
+    <RootNamespace>nhammerl.HotkeyLib</RootNamespace>
     <AssemblyName>HotkeyLib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

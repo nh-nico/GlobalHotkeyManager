@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WindowManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("GlobalHotkeyManager")]
+[assembly: AssemblyDescription("Manage Global Hotkeys and run own Code")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WindowManager")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("nhammerl")]
+[assembly: AssemblyProduct("GlobalHotkeyManager")]
+[assembly: AssemblyCopyright("Copyright ©  nhammerl")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

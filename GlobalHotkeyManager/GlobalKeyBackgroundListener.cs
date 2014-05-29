@@ -1,11 +1,11 @@
-﻿using System.Runtime.InteropServices;
-using Hotkeys;
+﻿using nhammerl.HotkeyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace WindowManager
+namespace nhammerl.GlobalHotkeyManager
 {
     public partial class GlobalKeyBackgroundListener : Form
     {
@@ -87,8 +87,8 @@ namespace WindowManager
                 {
                     new GlobalHotkey(KeyConstants.ALT, Keys.Up, this, HandleAltArrowUp),
                     new GlobalHotkey(KeyConstants.ALT, Keys.Down, this, HandleAltArrowDown),
-                    new GlobalHotkey(KeyConstants.ALT, Keys.Left, this,HandleAltArrowLeft),
-                    new GlobalHotkey(KeyConstants.ALT, Keys.Right,this,HandleAltArrowRight)
+                    new GlobalHotkey(KeyConstants.ALT, Keys.Left, this, HandleAltArrowLeft),
+                    new GlobalHotkey(KeyConstants.ALT, Keys.Right,this, HandleAltArrowRight)
                 });
         }
 
@@ -129,11 +129,9 @@ namespace WindowManager
             Log("ALT+ArrowUp");
             var x = GetForegroundWindow();
 
-            var screen =  Screen.FromHandle(x);
+            var screen = Screen.FromHandle(x);
 
             MoveWindow(x, 0, 0, 1920, 540, true);
-
-
         }
 
         private void HandleAltArrowDown()
@@ -171,7 +169,7 @@ namespace WindowManager
         }
 
         [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
+        private static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);

@@ -1,13 +1,20 @@
 using System;
 using System.Windows.Forms;
 
-namespace Hotkeys
+namespace nhammerl.HotkeyLib
 {
+    /// <summary>
+    /// Hotkey Helper Utilities
+    /// </summary>
     public static class KeyUtilities
     {
+        /// <summary>
+        /// Get the currently pressed Key
+        /// </summary>
+        /// <param name="lParam"></param>
+        /// <returns>pressed Key</returns>
         public static Keys GetKey(IntPtr lParam)
         {
-            // not all of the parenthesis are needed, I just found it easier to see what's happening
             return (Keys)((lParam.ToInt32()) >> 16);
         }
     }
