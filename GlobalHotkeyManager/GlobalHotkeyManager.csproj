@@ -52,6 +52,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingConverter\FunctionConstantKeyToStringConverter.cs" />
     <Compile Include="Data\Configuration\HotkeyConfiguration.cs" />
     <Compile Include="Data\Configuration\HotkeyConfigurationPath.cs">
       <DependentUpon>IConfigurationPath.cs</DependentUpon>

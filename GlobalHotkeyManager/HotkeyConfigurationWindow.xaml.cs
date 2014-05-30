@@ -8,7 +8,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using TextBox = System.Windows.Forms.TextBox;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace nhammerl.GlobalHotkeyManager
@@ -21,6 +25,7 @@ namespace nhammerl.GlobalHotkeyManager
         private ObservableCollection<HotkeyConfiguration> _configuredHotkeys;
         private readonly IConfiguredHotkeys _xmlConfiguredHotkeys;
         private readonly ILoadPlugins _hotKeyPlugins;
+        private Keys _lastPressedKey;
 
         public ObservableCollection<HotkeyConfiguration> ConfiguredHotkeys
         {
@@ -60,16 +65,11 @@ namespace nhammerl.GlobalHotkeyManager
 
         private void LoadDropDowns()
         {
-            foreach (var key in Enum.GetValues(typeof(Key)))
-            {
-                KeyDropDown.Items.Add(key);
-            }
-
-            ModifierDropDown.Items.Add(KeyConstants.ALT);
-            ModifierDropDown.Items.Add(KeyConstants.CTRL);
-            ModifierDropDown.Items.Add(KeyConstants.NOMOD);
-            ModifierDropDown.Items.Add(KeyConstants.SHIFT);
-            ModifierDropDown.Items.Add(KeyConstants.WIN);
+            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "ALT", Tag = KeyConstants.ALT });
+            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "CTRL", Tag = KeyConstants.CTRL });
+            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "NOMOD", Tag = KeyConstants.NOMOD });
+            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "SHIFT", Tag = KeyConstants.SHIFT });
+            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "WIN", Tag = KeyConstants.WIN });
 
             foreach (var globalHotkeyPlugin in _hotKeyPlugins.Plugins)
             {
@@ -92,18 +92,17 @@ namespace nhammerl.GlobalHotkeyManager
         /// <param name="e"></param>
         private void OnClickAddHotkeyButton(object sender, RoutedEventArgs e)
         {
-            var selectedKey = (Key)KeyDropDown.SelectedItem;
-            var selectedModifier = ModifierDropDown.SelectedItem;
+            var selectedModifier = (ComboBoxItem)ModifierDropDown.SelectedItem;
             var selectedPluginName = (string)PluginsDropDown.SelectedItem;
 
-            var hotkeyConfig = new HotkeyConfiguration(Guid.NewGuid(), (int)selectedModifier + 1, selectedKey, selectedPluginName);
+            var hotkeyConfig = new HotkeyConfiguration(Guid.NewGuid(), (int)selectedModifier.Tag, _lastPressedKey, selectedPluginName);
 
             _xmlConfiguredHotkeys.AddHotkey(hotkeyConfig);
             ConfiguredHotkeys.Add(hotkeyConfig);
 
-            KeyDropDown.SelectedItem = null;
             ModifierDropDown.SelectedItem = null;
             PluginsDropDown.SelectedItem = null;
+            PressedKeyIdentifier.Text = "";
         }
 
         /// <summary>
@@ -137,6 +136,12 @@ namespace nhammerl.GlobalHotkeyManager
         {
             var handler = PropertyChanged;
             if (handler != null) { handler(this, new PropertyChangedEventArgs(propertyName)); }
+        }
+
+        private void KeyComboKeyDown(object sender, KeyEventArgs e)
+        {
+            _lastPressedKey = (Keys)KeyInterop.VirtualKeyFromKey(e.Key);
+            PressedKeyIdentifier.Text = _lastPressedKey.ToString();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using nhammerl.HotkeyLib;
-using System;
-using System.Windows.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace nhammerl.GlobalHotkeyManager.Data.Configuration
 {
@@ -10,11 +10,11 @@ namespace nhammerl.GlobalHotkeyManager.Data.Configuration
 
         public int Modifier { get; set; }
 
-        public Key Key { get; set; }
+        public Keys Key { get; set; }
 
         public string PluginName { get; set; }
 
-        public HotkeyConfiguration(Guid id, int modifier, Key key, string pluginName)
+        public HotkeyConfiguration(Guid id, int modifier, Keys key, string pluginName)
         {
             Id = id;
             Modifier = modifier;

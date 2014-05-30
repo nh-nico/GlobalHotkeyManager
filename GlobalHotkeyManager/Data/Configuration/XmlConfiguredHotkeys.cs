@@ -36,7 +36,7 @@ namespace nhammerl.GlobalHotkeyManager.Data.Configuration
                 {
                     var id = hotKey.Attributes["Id"].Value;
                     var modifier = Convert.ToInt32(hotKey.Attributes["Modifier"].Value);
-                    var key = (Key)Enum.GetValues(typeof(Keys)).GetValue(Convert.ToInt32(hotKey.Attributes["Key"].Value));
+                    var key = (Keys)(Convert.ToInt32(hotKey.Attributes["Key"].Value));
                     var pluginName = hotKey.Attributes["PluginName"].Value;
 
                     configuredKeys.Add(new HotkeyConfiguration(new Guid(id), modifier, key, pluginName));
@@ -68,7 +68,7 @@ namespace nhammerl.GlobalHotkeyManager.Data.Configuration
             var keyAttribute = configXml.CreateAttribute("Key");
             keyAttribute.Value = ((int)hotkey.Key).ToString();
             var modifierAttribute = configXml.CreateAttribute("Modifier");
-            modifierAttribute.Value = ((int)hotkey.Modifier).ToString();
+            modifierAttribute.Value = hotkey.Modifier.ToString();
             var pluginNameAttribute = configXml.CreateAttribute("PluginName");
             pluginNameAttribute.Value = hotkey.PluginName;
 

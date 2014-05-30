@@ -18,9 +18,8 @@ namespace nhammerl.GlobalHotkeyManager
 
         private readonly List<GlobalHotkey> _hotKeys;
         private readonly HotkeyConfigurationWindow _hotkeyConfigurationWindow;
-        private IConfiguredHotkeys _configuredHotkeys;
-        private ILoadPlugins _loadPlugins;
-        private IEnumerable<IGlobalHotkeyPlugin> _plugins;
+        private readonly IConfiguredHotkeys _configuredHotkeys;
+        private readonly IEnumerable<IGlobalHotkeyPlugin> _plugins;
 
         #endregion Private Members
 
@@ -38,8 +37,8 @@ namespace nhammerl.GlobalHotkeyManager
             _configuredHotkeys = new XmlConfiguredHotkeys(new HotkeyConfigurationPath());
 
             // Init Plugins
-            _loadPlugins = new GlobalHotkeyManagerLoadPlugins(new HotkeyManagerPluginsPath());
-            _plugins = _loadPlugins.Plugins;
+            var loadPlugins = new GlobalHotkeyManagerLoadPlugins(new HotkeyManagerPluginsPath());
+            _plugins = loadPlugins.Plugins;
 
             // EventHandler
             Shown += BackgroundListenerFromShow;
@@ -134,30 +133,15 @@ namespace nhammerl.GlobalHotkeyManager
         {
             _hotKeys.Clear();
 
-            _hotKeys.AddRange(
-                new List<GlobalHotkey>
-                {
-                    //new GlobalHotkey(KeyConstants.ALT, Keys.Up, this, HandleAltArrowUp),
-                    //new GlobalHotkey(KeyConstants.ALT, Keys.Down, this, HandleAltArrowDown),
-                    //new GlobalHotkey(KeyConstants.ALT, Keys.Left, this, HandleAltArrowLeft),
-                    //new GlobalHotkey(KeyConstants.ALT, Keys.Right,this, HandleAltArrowRight)
-                });
-
             foreach (var hotKey in _configuredHotkeys.List)
             {
                 var globalHotKey = new GlobalHotkey(
                     hotKey.Modifier,
-                    (Keys)hotKey.Key,
+                    hotKey.Key,
                     this,
                     () => _plugins.First(p => p.PluginName == hotKey.PluginName).Execute());
 
-                var a = (int)(Keys)hotKey.Key;
-                var b = (int)(Keys)Keys.Up;
-
-                var x = new GlobalHotkey(hotKey.Modifier, Keys.Up, this, _plugins.First(p => p.PluginName == hotKey.PluginName).Execute);
-                _hotKeys.Add(x);
-
-                //_hotKeys.Add(globalHotKey);
+                _hotKeys.Add(globalHotKey);
             }
         }
 
