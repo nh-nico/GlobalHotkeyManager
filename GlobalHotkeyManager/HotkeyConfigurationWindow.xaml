@@ -6,8 +6,26 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Button Margin="3" Content="Add Hotkey" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnClickAddHotkeyButton"></Button>
-        <ListBox Name="ConfiguredKeys" Margin="3,30,3,3">
-        </ListBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Margin="0,3,3,0" Content="Add Hotkey" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnClickAddHotkeyButton"></Button>
+        <Button Grid.Row="0" Margin="0,3,80,0" Content="Remove Hotkey" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnClickRemoveHotkeyButton"></Button>
+
+        <ComboBox Name="ModifierDropDown" Grid.Row="1" Margin="3" HorizontalAlignment="Left"></ComboBox>
+        <ComboBox Name="KeyDropDown"  Grid.Row="1" Margin="3" HorizontalAlignment="Center"></ComboBox>
+        <ComboBox Name="PluginsDropDown" Grid.Row="1" Margin="3" HorizontalAlignment="Right"></ComboBox>
+
+        <DataGrid Name="ConfiguredKeyDataGrid"  Margin="3,2,3,3" AutoGenerateColumns="True" Grid.Row="2" IsReadOnly="True">
+            <!--<DataGridTemplateColumn Header="Id" Width="250">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Id}"></Label>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>-->
+        </DataGrid>
     </Grid>
 </UserControl>

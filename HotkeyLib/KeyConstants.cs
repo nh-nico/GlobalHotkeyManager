@@ -1,8 +1,8 @@
 ﻿namespace nhammerl.HotkeyLib
 {
-    /// <summary>
-    /// Key Constatnt modifiers
-    /// </summary>
+    ///<summary>
+    ///Key Constatnt modifiers
+    ///</summary>
     public static class KeyConstants
     {
         //modifiers
@@ -19,4 +19,20 @@
 
         // ReSharper restore InconsistentNaming
     }
+
+    //public enum KeyConstants
+    //{
+    //    // ReSharper disable InconsistentNaming
+    //    NOMOD = 0x0000,
+
+    //    ALT = 0x0001,
+    //    CTRL = 0x0002,
+    //    SHIFT = 0x0004,
+    //    WIN = 0x0008,
+
+    //    //windows message id for hotkey
+    //    WM_HOTKEY_MSG_ID = 0x0312
+
+    //    // ReSharper restore InconsistentNaming
+    //}
 }

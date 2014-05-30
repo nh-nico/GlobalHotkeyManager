@@ -1,11 +1,14 @@
-﻿using nhammerl.GlobalHotkeyManager.Plugins;
+﻿using nhammerl.GlobalHotkeyManager.Data.Configuration;
+using nhammerl.GlobalHotkeyManager.Plugins;
 using nhammerl.HotkeyLib;
+using nhammerlGlobalHotkeyPluginLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace nhammerl.GlobalHotkeyManager
 {
@@ -14,7 +17,10 @@ namespace nhammerl.GlobalHotkeyManager
         #region Private Members
 
         private readonly List<GlobalHotkey> _hotKeys;
-        private HotkeyConfigurationWindow _hotkeyConfigurationWindow;
+        private readonly HotkeyConfigurationWindow _hotkeyConfigurationWindow;
+        private IConfiguredHotkeys _configuredHotkeys;
+        private ILoadPlugins _loadPlugins;
+        private IEnumerable<IGlobalHotkeyPlugin> _plugins;
 
         #endregion Private Members
 
@@ -27,6 +33,13 @@ namespace nhammerl.GlobalHotkeyManager
             // Initialize the HotkeyList
             _hotKeys = new List<GlobalHotkey>();
             _hotkeyConfigurationWindow = new HotkeyConfigurationWindow();
+
+            // Init configuredHotkey
+            _configuredHotkeys = new XmlConfiguredHotkeys(new HotkeyConfigurationPath());
+
+            // Init Plugins
+            _loadPlugins = new GlobalHotkeyManagerLoadPlugins(new HotkeyManagerPluginsPath());
+            _plugins = _loadPlugins.Plugins;
 
             // EventHandler
             Shown += BackgroundListenerFromShow;
@@ -74,7 +87,7 @@ namespace nhammerl.GlobalHotkeyManager
         /// <param name="e"></param>
         private void BackgroundListenerFromClosing(object sender, FormClosingEventArgs e)
         {
-            _hotKeys.ForEach(k => k.Unregiser());
+            UnregisterGlobalKeys();
         }
 
         #endregion Form Events
@@ -101,8 +114,13 @@ namespace nhammerl.GlobalHotkeyManager
         /// <param name="e"></param>
         private void TrayMenueConfigureHotkeys(object sender, EventArgs e)
         {
-            var w = new Window { Content = _hotkeyConfigurationWindow };
+            UnregisterGlobalKeys();
+
+            var w = new Window { Content = _hotkeyConfigurationWindow, Width = 350, Height = 400 };
             w.ShowDialog();
+
+            BuildGlobalKeys();
+            RegisterGlobalKeys();
         }
 
         #endregion TrayMenue Events
@@ -114,14 +132,33 @@ namespace nhammerl.GlobalHotkeyManager
         /// </summary>
         public void BuildGlobalKeys()
         {
+            _hotKeys.Clear();
+
             _hotKeys.AddRange(
                 new List<GlobalHotkey>
                 {
-                    new GlobalHotkey(KeyConstants.ALT, Keys.Up, this, HandleAltArrowUp),
-                    new GlobalHotkey(KeyConstants.ALT, Keys.Down, this, HandleAltArrowDown),
-                    new GlobalHotkey(KeyConstants.ALT, Keys.Left, this, HandleAltArrowLeft),
-                    new GlobalHotkey(KeyConstants.ALT, Keys.Right,this, HandleAltArrowRight)
+                    //new GlobalHotkey(KeyConstants.ALT, Keys.Up, this, HandleAltArrowUp),
+                    //new GlobalHotkey(KeyConstants.ALT, Keys.Down, this, HandleAltArrowDown),
+                    //new GlobalHotkey(KeyConstants.ALT, Keys.Left, this, HandleAltArrowLeft),
+                    //new GlobalHotkey(KeyConstants.ALT, Keys.Right,this, HandleAltArrowRight)
                 });
+
+            foreach (var hotKey in _configuredHotkeys.List)
+            {
+                var globalHotKey = new GlobalHotkey(
+                    hotKey.Modifier,
+                    (Keys)hotKey.Key,
+                    this,
+                    () => _plugins.First(p => p.PluginName == hotKey.PluginName).Execute());
+
+                var a = (int)(Keys)hotKey.Key;
+                var b = (int)(Keys)Keys.Up;
+
+                var x = new GlobalHotkey(hotKey.Modifier, Keys.Up, this, _plugins.First(p => p.PluginName == hotKey.PluginName).Execute);
+                _hotKeys.Add(x);
+
+                //_hotKeys.Add(globalHotKey);
+            }
         }
 
         /// <summary>
@@ -130,6 +167,11 @@ namespace nhammerl.GlobalHotkeyManager
         public void RegisterGlobalKeys()
         {
             _hotKeys.ForEach(k => k.Register());
+        }
+
+        public void UnregisterGlobalKeys()
+        {
+            _hotKeys.ForEach(k => k.Unregiser());
         }
 
         /// <summary>

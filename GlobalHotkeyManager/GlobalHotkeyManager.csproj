@@ -76,6 +76,7 @@
     <Compile Include="Plugins\ILoadPlugins.cs" />
     <Compile Include="Plugins\IPluginPath.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalBackgroundListenerBase.cs">
       <SubType>Form</SubType>
