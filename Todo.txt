@@ -1,0 +1,2 @@
+- Konfigurierte Keys werden ausgelesen, allerdings nocht nicht weggeschrieben.
+ --> Klasse und interface für das wegschreiben in die config

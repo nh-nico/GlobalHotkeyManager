@@ -16,11 +16,20 @@ namespace nhammerl.GlobalHotkeyManager
             this.Logger = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             //
+            // trayNotification ContextMenue
+            //
+            var trayNotificationContextMenue = new ContextMenu();
+            trayNotificationContextMenue.MenuItems.Add(new MenuItem("Configure Hotkeys", TrayMenueConfigureHotkeys));
+            trayNotificationContextMenue.MenuItems.Add(new MenuItem("Exit", TrayMenueExit));
+
+            //
             // trayNotification
             //
             this.trayNotification.Icon = ((System.Drawing.Icon)(resources.GetObject("trayNotification.Icon")));
             this.trayNotification.Text = "notifyIcon1";
             this.trayNotification.Visible = true;
+            this.trayNotification.ContextMenu = trayNotificationContextMenue;
+
             //
             // Logger
             //

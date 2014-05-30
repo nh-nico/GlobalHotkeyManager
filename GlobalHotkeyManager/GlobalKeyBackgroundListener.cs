@@ -1,8 +1,10 @@
-﻿using nhammerl.HotkeyLib;
+﻿using nhammerl.GlobalHotkeyManager.Plugins;
+using nhammerl.HotkeyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace nhammerl.GlobalHotkeyManager
@@ -12,6 +14,7 @@ namespace nhammerl.GlobalHotkeyManager
         #region Private Members
 
         private readonly List<GlobalHotkey> _hotKeys;
+        private HotkeyConfigurationWindow _hotkeyConfigurationWindow;
 
         #endregion Private Members
 
@@ -23,6 +26,7 @@ namespace nhammerl.GlobalHotkeyManager
 
             // Initialize the HotkeyList
             _hotKeys = new List<GlobalHotkey>();
+            _hotkeyConfigurationWindow = new HotkeyConfigurationWindow();
 
             // EventHandler
             Shown += BackgroundListenerFromShow;
@@ -44,7 +48,7 @@ namespace nhammerl.GlobalHotkeyManager
             Log("Show Log");
 
             // Show the From
-            Show();
+            //Show();
         }
 
         /// <summary>
@@ -74,6 +78,34 @@ namespace nhammerl.GlobalHotkeyManager
         }
 
         #endregion Form Events
+
+        #region TrayMenue Events
+
+        /// <summary>
+        /// Close the BackgroundListener
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TrayMenueExit(object sender, EventArgs e)
+        {
+            Log("Exit Programm");
+
+            // Close Programm
+            Close();
+        }
+
+        /// <summary>
+        /// Open Configuration Window for Hotkeys
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TrayMenueConfigureHotkeys(object sender, EventArgs e)
+        {
+            var w = new Window { Content = _hotkeyConfigurationWindow };
+            w.ShowDialog();
+        }
+
+        #endregion TrayMenue Events
 
         #region HotKeyWorker
 
