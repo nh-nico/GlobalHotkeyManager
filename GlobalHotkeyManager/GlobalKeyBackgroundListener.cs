@@ -8,7 +8,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace nhammerl.GlobalHotkeyManager
 {
@@ -43,7 +42,7 @@ namespace nhammerl.GlobalHotkeyManager
             // EventHandler
             Shown += BackgroundListenerFromShow;
             FormClosing += BackgroundListenerFromClosing;
-            trayNotification.DoubleClick += DoubleClickTrayIcon;
+            _trayNotification.DoubleClick += DoubleClickTrayIcon;
         }
 
         #endregion Constructor
@@ -115,7 +114,7 @@ namespace nhammerl.GlobalHotkeyManager
         {
             UnregisterGlobalKeys();
 
-            var w = new Window { Content = _hotkeyConfigurationWindow, Width = 350, Height = 400 };
+            var w = new Window { Content = _hotkeyConfigurationWindow, Width = 450, Height = 350 };
             w.ShowDialog();
 
             BuildGlobalKeys();
@@ -242,7 +241,7 @@ namespace nhammerl.GlobalHotkeyManager
         /// <param name="text"></param>
         private void Log(string text)
         {
-            Logger.Text += text + Environment.NewLine;
+            _logger.Text += text + Environment.NewLine;
         }
 
         #endregion Debug and Log

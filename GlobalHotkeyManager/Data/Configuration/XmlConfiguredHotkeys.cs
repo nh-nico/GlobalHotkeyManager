@@ -1,8 +1,6 @@
-﻿using nhammerl.HotkeyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Windows.Input;
 using System.Xml;
 
 namespace nhammerl.GlobalHotkeyManager.Data.Configuration

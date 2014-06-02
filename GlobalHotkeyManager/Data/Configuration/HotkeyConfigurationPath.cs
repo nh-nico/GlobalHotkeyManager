@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 
 namespace nhammerl.GlobalHotkeyManager.Data.Configuration
 {
@@ -14,9 +15,11 @@ namespace nhammerl.GlobalHotkeyManager.Data.Configuration
 
                 if (!File.Exists(configFilePath))
                 {
-                    File.Create(configFilePath);
-                }
+                    var configFile = new XmlDocument();
 
+                        configFile.AppendChild(configFile.CreateElement("HotkeyConfigurations"));
+                        configFile.Save(configFilePath);
+                }
                 return configFilePath;
             }
         }

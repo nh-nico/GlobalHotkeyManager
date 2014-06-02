@@ -59,5 +59,14 @@ namespace nhammerl.GlobalHotkeyManager.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GlobalHotkeyManager.
+        /// </summary>
+        internal static string GlobalKeyBackgroundListener_InitializeComponent_GlobalHotkeyManager {
+            get {
+                return ResourceManager.GetString("GlobalKeyBackgroundListener_InitializeComponent_GlobalHotkeyManager", resourceCulture);
+            }
+        }
     }
 }

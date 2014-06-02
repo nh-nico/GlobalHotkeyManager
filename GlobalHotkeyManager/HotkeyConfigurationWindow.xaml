@@ -5,26 +5,35 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:nhammerl.GlobalHotkeyManager" x:Class="nhammerl.GlobalHotkeyManager.HotkeyConfigurationWindow"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <local:FunctionConstantKeyToStringConverter x:Key="FunctionConstantKeyToStringConverter" />
-    </UserControl.Resources>
+             d:DesignHeight="350" d:DesignWidth="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Margin="0,3,3,0" Content="Add Hotkey" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnClickAddHotkeyButton" />
-        <Button Grid.Row="0" Margin="0,3,80,0" Content="Remove Hotkey" HorizontalAlignment="Right" VerticalAlignment="Top" Click="OnClickRemoveHotkeyButton" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="33*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Button Grid.Row="0" Grid.Column="2" Margin="5" Content="Add Hotkey" Click="OnClickAddHotkeyButton" />
+        <Button Grid.Row="0" Grid.Column="1" Margin="5" Content="Remove Hotkey" Click="OnClickRemoveHotkeyButton" />
+        
+        <Label Content="Select Modifier:" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Bottom"/>
+        <Label Content="Select Hotkey:" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Bottom"/>
+        <Label Content="Select Plugin:" Grid.Row="1" Grid.Column="2" Margin="5" VerticalAlignment="Bottom"/>
+        
+        <ComboBox x:Name="ModifierDropDown" Grid.Row="2" Grid.Column="0" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="PressedKeyIdentifier" Width="100" IsReadOnly="True" PreviewKeyDown="KeyComboKeyDown" GotFocus="KeyComboTextSetTextOnFocus" Margin="5"/>
+        <ComboBox x:Name="PluginsDropDown" Grid.Row="2" Grid.Column="2" Margin="5" />
 
-        <TextBox x:Name="PressedKeyIdentifier" Grid.Row="1" IsReadOnly="True" PreviewKeyDown="KeyComboKeyDown" Margin="4" HorizontalAlignment="Center" Width="50" />
-        <ComboBox x:Name="ModifierDropDown" Grid.Row="1" Margin="3" HorizontalAlignment="Left" />
-        <ComboBox x:Name="PluginsDropDown" Grid.Row="1" Margin="3" HorizontalAlignment="Right" />
-
-        <DataGrid x:Name="ConfiguredKeyDataGrid"  Margin="3,2,3,3" AutoGenerateColumns="False" Grid.Row="2" IsReadOnly="True">
+        <DataGrid x:Name="ConfiguredKeyDataGrid"  Margin="3,2,3,3" AutoGenerateColumns="False" Grid.Row="3" Grid.ColumnSpan="3" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="FunctionKey" Binding="{Binding Modifier}" />
+                <!--<DataGridTextColumn Header="FunctionKey" Binding="{Binding Modifier}" />-->
+                <DataGridTextColumn Header="Modifier" Binding="{Binding ModifierName}" />
                 <DataGridTextColumn Header="TriggerKey" Binding="{Binding Key}" />
                 <DataGridTextColumn Header="PluginName" Binding="{Binding PluginName}" />
             </DataGrid.Columns>

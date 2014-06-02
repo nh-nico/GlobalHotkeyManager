@@ -1,4 +1,5 @@
-﻿using nhammerl.GlobalHotkeyManager.Annotations;
+﻿using System.Xml;
+using nhammerl.GlobalHotkeyManager.Annotations;
 using nhammerl.GlobalHotkeyManager.Data.Configuration;
 using nhammerl.GlobalHotkeyManager.Plugins;
 using nhammerl.HotkeyLib;
@@ -26,6 +27,7 @@ namespace nhammerl.GlobalHotkeyManager
         private readonly IConfiguredHotkeys _xmlConfiguredHotkeys;
         private readonly ILoadPlugins _hotKeyPlugins;
         private Keys _lastPressedKey;
+        private string _pressAnyKeyText = "Press any Key";
 
         public ObservableCollection<HotkeyConfiguration> ConfiguredHotkeys
         {
@@ -95,6 +97,12 @@ namespace nhammerl.GlobalHotkeyManager
             var selectedModifier = (ComboBoxItem)ModifierDropDown.SelectedItem;
             var selectedPluginName = (string)PluginsDropDown.SelectedItem;
 
+            if (selectedModifier == null || selectedPluginName == null || PressedKeyIdentifier.Text == "" || PressedKeyIdentifier.Text == _pressAnyKeyText)
+            {
+                System.Windows.MessageBox.Show("Select Modifier, Key and Plugin");
+                return;
+            }
+
             var hotkeyConfig = new HotkeyConfiguration(Guid.NewGuid(), (int)selectedModifier.Tag, _lastPressedKey, selectedPluginName);
 
             _xmlConfiguredHotkeys.AddHotkey(hotkeyConfig);
@@ -114,6 +122,13 @@ namespace nhammerl.GlobalHotkeyManager
         {
             DeleteSelectedFromConfig();
         }
+
+
+        private void KeyComboFieldSelected(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("asdf");
+        }
+        
 
         /// <summary>
         /// Delete the current selected HotkeyConfig
@@ -142,6 +157,11 @@ namespace nhammerl.GlobalHotkeyManager
         {
             _lastPressedKey = (Keys)KeyInterop.VirtualKeyFromKey(e.Key);
             PressedKeyIdentifier.Text = _lastPressedKey.ToString();
+        }
+
+        private void KeyComboTextSetTextOnFocus(object sender, RoutedEventArgs e)
+        {
+            PressedKeyIdentifier.Text = _pressAnyKeyText;
         }
     }
 }
