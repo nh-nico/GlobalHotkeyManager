@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using nhammerlGlobalHotkeyPluginLib;
+﻿using nhammerlGlobalHotkeyPluginLib;
+using System.Windows.Forms;
 
 namespace nhammerl.WindowOrganizer
 {
