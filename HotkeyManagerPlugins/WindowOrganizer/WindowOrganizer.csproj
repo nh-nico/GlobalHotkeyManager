@@ -41,19 +41,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Foo.cs" />
+    <Compile Include="ExecutionMains\IExecutionMain.cs" />
+    <Compile Include="GlobalHotkeyPlugins\ResizeActiveWindowTo1027X768.cs" />
+    <Compile Include="GlobalHotkeyPlugins\SplitHalfAttachBottom.cs" />
+    <Compile Include="GlobalHotkeyPlugins\SplitHalfAttachTop.cs" />
+    <Compile Include="Internal\ActiveWindowScreenInfos.cs">
+      <DependentUpon>IWindowScreenInfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\AllActiveScreens.cs">
+      <DependentUpon>IScreens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\ActiveWindowRectangle.cs">
+      <DependentUpon>IWindowRectangle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\HalfBottomActiveWindowPositionMover.cs">
+      <DependentUpon>IWindowPositionMover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\HalfTopActiveWindowPositionMover.cs">
+      <DependentUpon>IWindowPositionMover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\IScreenHeight.cs" />
+    <Compile Include="Internal\IWindowPositionMover.cs" />
+    <Compile Include="Internal\IWindowRectangle.cs" />
+    <Compile Include="Internal\IScreens.cs" />
+    <Compile Include="Internal\IWindowScreenInfos.cs" />
+    <Compile Include="Internal\PrimaryScreenDependentScreenHeight.cs">
+      <DependentUpon>IScreenHeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\ResizeActiveWindowTo1024X768.cs" />
+    <Compile Include="Internal\WindowRectangle.cs" />
+    <Compile Include="Internal\IActiveWindow.cs" />
+    <Compile Include="Internal\EnvironmentActiveWindow.cs">
+      <DependentUpon>IActiveWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResizeToNormal.cs" />
-    <Compile Include="SplitHalfAttachBottom.cs" />
-    <Compile Include="SplitHalfAttachTop.cs" />
-    <Compile Include="TestMessageThrower1.cs" />
-    <Compile Include="TestMessageThrower2.cs" />
+    <Compile Include="ExecutionMains\MoveActiveWindowPositionExecutionMain.cs">
+      <DependentUpon>IExecutionMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalHotkeyPlugins\TestMessageThrower.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\GlobalHotkeyPluginLib\GlobalHotkeyPluginLib.csproj">
       <Project>{bc16d7e1-f7ce-44cf-b33c-adc26a0486f7}</Project>
       <Name>GlobalHotkeyPluginLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
