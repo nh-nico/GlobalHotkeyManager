@@ -1,2 +1,3 @@
-- Konfigurierte Keys werden ausgelesen, allerdings nocht nicht weggeschrieben.
- --> Klasse und interface für das wegschreiben in die config
+- nur fenster kein windows 8 fenster als aktives fenster erkennen!
+- Manager Testen und Struktur überarbeiten
+--> rein in Github :))
