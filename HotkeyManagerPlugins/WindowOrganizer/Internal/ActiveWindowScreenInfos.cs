@@ -24,7 +24,7 @@ namespace nhammerl.WindowOrganizer.Internal
             var currentScreenIndex = 0;
             foreach (var screen in _screens.List)
             {
-                if (_windowRectangle.Value.Left > screen.WorkingArea.Width + currentWindowTopLeftCorner)
+                if (_windowRectangle.Value.xUpperLeft >= screen.WorkingArea.Width + currentWindowTopLeftCorner)
                 {
                     currentWindowTopLeftCorner += screen.WorkingArea.Width;
                     currentScreenIndex++;

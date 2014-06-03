@@ -29,11 +29,19 @@ namespace nhammerl.WindowOrganizer.Internal
 
             MoveWindow(
                 _activeWindow.Value,
-                currentScreenTopLeft,
-                _screenHeight.ForScreen(currentScreen),
-                1024,
-                768,
+                0,
+                0,
+                Screen.PrimaryScreen.WorkingArea.Width,
+                Screen.PrimaryScreen.WorkingArea.Height,
                 true);
+
+            //MoveWindow(
+            //    _activeWindow.Value,
+            //    currentScreenTopLeft,
+            //    _screenHeight.ForScreen(currentScreen),
+            //    1024,
+            //    768,
+            //    true);
         }
 
         [DllImport("user32.dll")]

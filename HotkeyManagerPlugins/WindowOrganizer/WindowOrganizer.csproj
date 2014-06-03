@@ -68,7 +68,9 @@
     <Compile Include="Internal\PrimaryScreenDependentScreenHeight.cs">
       <DependentUpon>IScreenHeight.cs</DependentUpon>
     </Compile>
-    <Compile Include="Internal\ResizeActiveWindowTo1024X768.cs" />
+    <Compile Include="Internal\ResizeActiveWindowTo1024X768.cs">
+      <DependentUpon>IWindowPositionMover.cs</DependentUpon>
+    </Compile>
     <Compile Include="Internal\WindowRectangle.cs" />
     <Compile Include="Internal\IActiveWindow.cs" />
     <Compile Include="Internal\EnvironmentActiveWindow.cs">
