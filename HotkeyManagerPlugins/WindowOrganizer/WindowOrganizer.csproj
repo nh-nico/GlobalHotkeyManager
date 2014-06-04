@@ -48,6 +48,12 @@
     <Compile Include="Internal\ActiveWindowScreenInfos.cs">
       <DependentUpon>IWindowScreenInfos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Internal\ActiveWindowTitle.cs">
+      <DependentUpon>IWindowTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\ActiveWindowTitleNotStartMenuePluginState.cs">
+      <DependentUpon>IPluginState.cs</DependentUpon>
+    </Compile>
     <Compile Include="Internal\AllActiveScreens.cs">
       <DependentUpon>IScreens.cs</DependentUpon>
     </Compile>
@@ -60,11 +66,13 @@
     <Compile Include="Internal\HalfTopActiveWindowPositionMover.cs">
       <DependentUpon>IWindowPositionMover.cs</DependentUpon>
     </Compile>
+    <Compile Include="Internal\IPluginState.cs" />
     <Compile Include="Internal\IScreenHeight.cs" />
     <Compile Include="Internal\IWindowPositionMover.cs" />
     <Compile Include="Internal\IWindowRectangle.cs" />
     <Compile Include="Internal\IScreens.cs" />
     <Compile Include="Internal\IWindowScreenInfos.cs" />
+    <Compile Include="Internal\IWindowTitle.cs" />
     <Compile Include="Internal\PrimaryScreenDependentScreenHeight.cs">
       <DependentUpon>IScreenHeight.cs</DependentUpon>
     </Compile>

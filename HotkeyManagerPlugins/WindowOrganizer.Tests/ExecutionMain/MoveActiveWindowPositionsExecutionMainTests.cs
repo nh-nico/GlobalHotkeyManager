@@ -8,18 +8,37 @@ namespace WindowOrganizer.Tests.ExecutionMain
     public class MoveActiveWindowPositionsExecutionMainTests
     {
         [Fact]
-        public void Run_CallsPositionMoverOnce()
+        public void Run_PluginStateTrue_CallsPositionMoverOnce()
         {
             // Arrange
             var windowPositionMover = Substitute.For<IWindowPositionMover>();
+            var pluginState = Substitute.For<IPluginState>();
+            pluginState.State.Returns(true);
 
-            var sut = new MoveActiveWindowPositionExecutionMain(windowPositionMover);
+            var sut = new MoveActiveWindowPositionExecutionMain(windowPositionMover, pluginState);
 
             // Act
             sut.Run();
 
             // Assert
             windowPositionMover.Received(1).Now();
+        }
+
+        [Fact]
+        public void Run_PluginStateFalse_NotCallsPositionMover()
+        {
+            // Arrange
+            var windowPositionMover = Substitute.For<IWindowPositionMover>();
+            var pluginState = Substitute.For<IPluginState>();
+            pluginState.State.Returns(false);
+
+            var sut = new MoveActiveWindowPositionExecutionMain(windowPositionMover, pluginState);
+
+            // Act
+            sut.Run();
+
+            // Assert
+            windowPositionMover.Received(0).Now();
         }
     }
 }

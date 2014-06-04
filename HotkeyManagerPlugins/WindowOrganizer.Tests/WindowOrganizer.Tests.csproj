@@ -54,8 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\ActiveWindowScreenInfosTests.cs" />
     <Compile Include="Internal\AllActiveScreensTests.cs" />
-    <Compile Include="Internal\EnvironmentActiveWindowTests.cs" />
     <Compile Include="Internal\GetActiveWindowRectangleTests.cs" />
     <Compile Include="ExecutionMain\MoveActiveWindowPositionsExecutionMainTests.cs" />
     <Compile Include="Internal\PrimaryScreenDependentScreenHeightTests.cs" />

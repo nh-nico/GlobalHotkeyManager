@@ -7,7 +7,10 @@ namespace nhammerl.WindowOrganizer.Internal
     {
         public IntPtr Value
         {
-            get { return GetForegroundWindow(); }
+            get
+            {
+                return GetForegroundWindow();
+            }
         }
 
         [DllImport("user32.dll")]

@@ -22,7 +22,9 @@ namespace nhammerl.WindowOrganizer.GlobalHotkeyPlugins
             IWindowScreenInfos windowScreenInfos = new ActiveWindowScreenInfos(screens, windowRectangle);
             IScreenHeight screenHeight = new PrimaryScreenDependentScreenHeight();
             IWindowPositionMover positionMover = new HalfBottomActiveWindowPositionMover(activeWindow, windowScreenInfos, screenHeight);
-            IExecutionMain executionMain = new MoveActiveWindowPositionExecutionMain(positionMover);
+            IWindowTitle windowTitle = new ActiveWindowTitle(activeWindow);
+            IPluginState pluginState = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
+            IExecutionMain executionMain = new MoveActiveWindowPositionExecutionMain(positionMover, pluginState);
 
             executionMain.Run();
         }

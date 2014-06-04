@@ -1,30 +1,14 @@
-ï»¿using Microsoft.QualityTools.Testing.Fakes;
+using Microsoft.QualityTools.Testing.Fakes;
 using nhammerl.WindowOrganizer.Internal;
 using NSubstitute;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Fakes;
 using Xunit;
+using Xunit.Extensions;
 
 namespace WindowOrganizer.Tests.Internal
 {
-    public class EnvironmentActiveWindowTests
-    {
-        [Fact]
-        public void Value_IsNotNull()
-        {
-            // Arrange
-
-            var sut = new EnvironmentActiveWindow();
-            // Act
-            var result = sut.Value;
-
-            // Assert
-            Assert.IsAssignableFrom<IActiveWindow>(sut);
-            Assert.NotNull(result);
-        }
-    }
-
     public class ActiveWindowScreenInfosTests
     {
         [Fact]
@@ -130,6 +114,43 @@ namespace WindowOrganizer.Tests.Internal
                 Assert.Equal(300, topLeft);
                 Assert.Equal(screen2, currentScreen);
             }
+        }
+    }
+
+    public class ActiveWindowTitleNotStartmenuePluginStateTests
+    {
+        [Fact]
+        public void State_WindowTitleEqualsStartMenü_ReturnsFalse()
+        {
+            // Arrange
+            var windowTitle = Substitute.For<IWindowTitle>();
+            windowTitle.Value.Returns("Startmenü");
+
+            var sut = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
+            // Act
+
+            var result = sut.State;
+            // Assert
+            Assert.False(result);
+        }
+
+        [Theory,
+        InlineData("StartDings"),
+        InlineData("Wurzelbrumf"),
+        InlineData("Foo"),
+        InlineData("bar")]
+        public void State_WindowTitleNotEqualsStartMenü_ReturnsTrue(string title)
+        {
+            // Arrange
+            var windowTitle = Substitute.For<IWindowTitle>();
+            windowTitle.Value.Returns(title);
+
+            var sut = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
+            // Act
+
+            var result = sut.State;
+            // Assert
+            Assert.True(result);
         }
     }
 }
