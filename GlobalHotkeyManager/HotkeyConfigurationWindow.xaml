@@ -27,7 +27,7 @@
         <Label Content="Select Plugin:" Grid.Row="1" Grid.Column="2" Margin="5" VerticalAlignment="Bottom"/>
         
         <ComboBox x:Name="ModifierDropDown" Grid.Row="2" Grid.Column="0" Margin="5"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="PressedKeyIdentifier" Width="100" IsReadOnly="True" PreviewKeyDown="KeyComboKeyDown" GotFocus="KeyComboTextSetTextOnFocus" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="PressedKeyIdentifier" Width="100" IsReadOnly="True" PreviewKeyDown="KeyCombinationDown" GotFocus="KeyComboTextSetTextOnFocus" Margin="5"/>
         <ComboBox x:Name="PluginsDropDown" Grid.Row="2" Grid.Column="2" Margin="5" />
 
         <DataGrid x:Name="ConfiguredKeyDataGrid"  Margin="3,2,3,3" AutoGenerateColumns="False" Grid.Row="3" Grid.ColumnSpan="3" IsReadOnly="True">

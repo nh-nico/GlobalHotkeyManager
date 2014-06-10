@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using nhammerl.GlobalHotkeyManager.Annotations;
 using nhammerl.HotkeyLib;
 
-namespace nhammerl.GlobalHotkeyManager.Data.Configuration
+namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
 {
     public class HotkeyConfiguration
     {

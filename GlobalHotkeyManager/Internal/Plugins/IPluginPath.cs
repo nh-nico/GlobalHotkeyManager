@@ -1,4 +1,4 @@
-﻿namespace nhammerl.GlobalHotkeyManager.Plugins
+﻿namespace nhammerl.GlobalHotkeyManager.Internal.Plugins
 {
     public interface IPluginPath
     {

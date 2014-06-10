@@ -1,5 +1,5 @@
-﻿using nhammerl.GlobalHotkeyManager.Data.Configuration;
-using nhammerl.GlobalHotkeyManager.Plugins;
+﻿using nhammerl.GlobalHotkeyManager.Internal.Data.Configuration;
+using nhammerl.GlobalHotkeyManager.Internal.Plugins;
 using nhammerl.HotkeyLib;
 using nhammerlGlobalHotkeyPluginLib;
 using System;
@@ -178,60 +178,6 @@ namespace nhammerl.GlobalHotkeyManager
         }
 
         #endregion HotKeyWorker
-
-        #region HotKeyActions
-
-        private void HandleAltArrowUp()
-        {
-            Log("ALT+ArrowUp");
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 0, 1920, 540, true);
-        }
-
-        private void HandleAltArrowDown()
-        {
-            Log("ALT+ArrowDown");
-
-            Log("ALT+ArrowUp");
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 540, 1920, 540, true);
-        }
-
-        private void HandleAltArrowLeft()
-        {
-            Log("ALT+ArrowLeft");
-
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 0, 500, 500, true);
-        }
-
-        private void HandleAltArrowRight()
-        {
-            Log("ALT+ArrowRight");
-
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 0, 1920, 1080, true);
-        }
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
-
-        #endregion HotKeyActions
 
         #region Debug and Log
 

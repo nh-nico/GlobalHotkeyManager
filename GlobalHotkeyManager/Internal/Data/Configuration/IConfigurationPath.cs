@@ -1,4 +1,4 @@
-﻿namespace nhammerl.GlobalHotkeyManager.Data.Configuration
+﻿namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
 {
     public interface IConfigurationPath
     {

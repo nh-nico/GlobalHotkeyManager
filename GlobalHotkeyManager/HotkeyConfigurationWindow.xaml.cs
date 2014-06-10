@@ -1,7 +1,6 @@
-﻿using System.Xml;
-using nhammerl.GlobalHotkeyManager.Annotations;
-using nhammerl.GlobalHotkeyManager.Data.Configuration;
-using nhammerl.GlobalHotkeyManager.Plugins;
+﻿using nhammerl.GlobalHotkeyManager.Annotations;
+using nhammerl.GlobalHotkeyManager.Internal.Data.Configuration;
+using nhammerl.GlobalHotkeyManager.Internal.Plugins;
 using nhammerl.HotkeyLib;
 using System;
 using System.Collections.ObjectModel;
@@ -13,7 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
-using TextBox = System.Windows.Forms.TextBox;
+using MessageBox = System.Windows.MessageBox;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace nhammerl.GlobalHotkeyManager
@@ -23,12 +22,18 @@ namespace nhammerl.GlobalHotkeyManager
     /// </summary>
     public partial class HotkeyConfigurationWindow : UserControl, INotifyPropertyChanged
     {
+        #region private variables
+
         private ObservableCollection<HotkeyConfiguration> _configuredHotkeys;
         private readonly IConfiguredHotkeys _xmlConfiguredHotkeys;
         private readonly ILoadPlugins _hotKeyPlugins;
         private Keys _lastPressedKey;
-        private string _pressAnyKeyText = "Press any Key";
+        private const string PressAnyKeyText = "Press any Key";
 
+        #endregion
+
+        #region public variables
+        
         public ObservableCollection<HotkeyConfiguration> ConfiguredHotkeys
         {
             get { return _configuredHotkeys; }
@@ -39,6 +44,11 @@ namespace nhammerl.GlobalHotkeyManager
             }
         }
 
+
+        #endregion
+
+        #region Constructor
+        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -65,20 +75,33 @@ namespace nhammerl.GlobalHotkeyManager
             LoadDropDowns();
         }
 
+        #endregion
+
+        #region Init Loads
+        
+        /// <summary>
+        /// Load Dropdown Lists with DefaultValues
+        /// </summary>
         private void LoadDropDowns()
         {
-            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "ALT", Tag = KeyConstants.ALT });
-            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "CTRL", Tag = KeyConstants.CTRL });
-            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "NOMOD", Tag = KeyConstants.NOMOD });
-            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "SHIFT", Tag = KeyConstants.SHIFT });
-            ModifierDropDown.Items.Add(new ComboBoxItem() { Content = "WIN", Tag = KeyConstants.WIN });
+            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "ALT", Tag = KeyConstants.ALT});
+            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "CTRL", Tag = KeyConstants.CTRL});
+            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "NOMOD", Tag = KeyConstants.NOMOD});
+            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "SHIFT", Tag = KeyConstants.SHIFT});
+            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "WIN", Tag = KeyConstants.WIN});
 
             foreach (var globalHotkeyPlugin in _hotKeyPlugins.Plugins)
             {
                 PluginsDropDown.Items.Add(globalHotkeyPlugin.PluginName);
             }
         }
+        
+        
+        
+        #endregion
 
+        #region Configuration
+        
         /// <summary>
         /// Init load the xml configured Hotkeys
         /// </summary>
@@ -88,22 +111,42 @@ namespace nhammerl.GlobalHotkeyManager
         }
 
         /// <summary>
+        /// Delete the current selected HotkeyConfig
+        /// </summary>
+        private void DeleteSelectedFromConfig()
+        {
+            var selectedItem = ConfiguredKeyDataGrid.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                _xmlConfiguredHotkeys.RemoveHotkey(((HotkeyConfiguration) selectedItem).Id);
+                ConfiguredHotkeys.Remove((HotkeyConfiguration) selectedItem);
+            }
+        }
+
+        #endregion
+        
+        #region Eventhanlder
+        
+        /// <summary>
         /// Handler for AddHotkey Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnClickAddHotkeyButton(object sender, RoutedEventArgs e)
         {
-            var selectedModifier = (ComboBoxItem)ModifierDropDown.SelectedItem;
-            var selectedPluginName = (string)PluginsDropDown.SelectedItem;
+            var selectedModifier = (ComboBoxItem) ModifierDropDown.SelectedItem;
+            var selectedPluginName = (string) PluginsDropDown.SelectedItem;
 
-            if (selectedModifier == null || selectedPluginName == null || PressedKeyIdentifier.Text == "" || PressedKeyIdentifier.Text == _pressAnyKeyText)
+            if (selectedModifier == null || selectedPluginName == null || PressedKeyIdentifier.Text == "" ||
+                PressedKeyIdentifier.Text == PressAnyKeyText)
             {
-                System.Windows.MessageBox.Show("Select Modifier, Key and Plugin");
+                MessageBox.Show("Select Modifier, Key and Plugin");
                 return;
             }
 
-            var hotkeyConfig = new HotkeyConfiguration(Guid.NewGuid(), (int)selectedModifier.Tag, _lastPressedKey, selectedPluginName);
+            var hotkeyConfig = new HotkeyConfiguration(Guid.NewGuid(), (int) selectedModifier.Tag, _lastPressedKey,
+                selectedPluginName);
 
             _xmlConfiguredHotkeys.AddHotkey(hotkeyConfig);
             ConfiguredHotkeys.Add(hotkeyConfig);
@@ -123,26 +166,30 @@ namespace nhammerl.GlobalHotkeyManager
             DeleteSelectedFromConfig();
         }
 
-
-        private void KeyComboFieldSelected(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Get the Pressed Key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyCombinationDown(object sender, KeyEventArgs e)
         {
-            System.Windows.MessageBox.Show("asdf");
+            _lastPressedKey = (Keys) KeyInterop.VirtualKeyFromKey(e.Key);
+            PressedKeyIdentifier.Text = _lastPressedKey.ToString();
         }
-        
 
         /// <summary>
-        /// Delete the current selected HotkeyConfig
+        /// Set the Default Text on focus the identifierbox
         /// </summary>
-        private void DeleteSelectedFromConfig()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyComboTextSetTextOnFocus(object sender, RoutedEventArgs e)
         {
-            var selectedItem = ConfiguredKeyDataGrid.SelectedItem;
-
-            if (selectedItem != null)
-            {
-                _xmlConfiguredHotkeys.RemoveHotkey(((HotkeyConfiguration)selectedItem).Id);
-                ConfiguredHotkeys.Remove((HotkeyConfiguration)selectedItem);
-            }
+            PressedKeyIdentifier.Text = PressAnyKeyText;
         }
+
+        #endregion
+        
+        #region Helper
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -150,18 +197,13 @@ namespace nhammerl.GlobalHotkeyManager
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null) { handler(this, new PropertyChangedEventArgs(propertyName)); }
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
-        private void KeyComboKeyDown(object sender, KeyEventArgs e)
-        {
-            _lastPressedKey = (Keys)KeyInterop.VirtualKeyFromKey(e.Key);
-            PressedKeyIdentifier.Text = _lastPressedKey.ToString();
-        }
+        #endregion
 
-        private void KeyComboTextSetTextOnFocus(object sender, RoutedEventArgs e)
-        {
-            PressedKeyIdentifier.Text = _pressAnyKeyText;
-        }
     }
 }

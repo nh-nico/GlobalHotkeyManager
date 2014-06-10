@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace nhammerl.GlobalHotkeyManager.Data.Configuration
+namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
 {
     public interface IConfiguredHotkeys
     {

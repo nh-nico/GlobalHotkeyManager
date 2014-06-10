@@ -1,11 +1,11 @@
-﻿using nhammerlGlobalHotkeyPluginLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using nhammerlGlobalHotkeyPluginLib;
 
-namespace nhammerl.GlobalHotkeyManager.Plugins
+namespace nhammerl.GlobalHotkeyManager.Internal.Plugins
 {
     public class GlobalHotkeyManagerLoadPlugins : ILoadPlugins
     {

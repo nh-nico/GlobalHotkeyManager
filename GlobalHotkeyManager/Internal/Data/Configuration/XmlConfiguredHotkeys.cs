@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace nhammerl.GlobalHotkeyManager.Data.Configuration
+namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
 {
     public class XmlConfiguredHotkeys : IConfiguredHotkeys
     {
