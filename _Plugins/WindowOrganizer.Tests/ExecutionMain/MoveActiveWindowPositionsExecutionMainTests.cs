@@ -11,7 +11,7 @@ namespace WindowOrganizer.Tests.ExecutionMain
         public void Run_PluginStateTrue_CallsPositionMoverOnce()
         {
             // Arrange
-            var windowPositionMover = Substitute.For<IWindowPositionMover>();
+            var windowPositionMover = Substitute.For<IChangeWindowPosition>();
             var pluginState = Substitute.For<IPluginState>();
             pluginState.State.Returns(true);
 
@@ -28,7 +28,7 @@ namespace WindowOrganizer.Tests.ExecutionMain
         public void Run_PluginStateFalse_NotCallsPositionMover()
         {
             // Arrange
-            var windowPositionMover = Substitute.For<IWindowPositionMover>();
+            var windowPositionMover = Substitute.For<IChangeWindowPosition>();
             var pluginState = Substitute.For<IPluginState>();
             pluginState.State.Returns(false);
 

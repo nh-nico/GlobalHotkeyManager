@@ -1,6 +1,6 @@
 namespace nhammerl.WindowOrganizer.Internal
 {
-    public interface IWindowPositionMover
+    public interface IChangeWindowPosition
     {
         void Now();
     }

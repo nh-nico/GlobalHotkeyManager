@@ -2,8 +2,8 @@
 
 namespace nhammerl.WindowOrganizer.Internal
 {
-    public interface IScreenHeight
+    public interface IScreen
     {
-        int ForScreen(Screen screen);
+        Screen Value { get; }
     }
 }

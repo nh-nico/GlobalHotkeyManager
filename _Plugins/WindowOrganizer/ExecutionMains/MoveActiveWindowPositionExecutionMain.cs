@@ -5,15 +5,15 @@ namespace nhammerl.WindowOrganizer.ExecutionMains
 {
     public class MoveActiveWindowPositionExecutionMain : IExecutionMain
     {
-        private readonly IWindowPositionMover _positionMover;
+        private readonly IChangeWindowPosition _position;
         private readonly IPluginState _pluginState;
 
-        public MoveActiveWindowPositionExecutionMain(IWindowPositionMover positionMover, IPluginState pluginState)
+        public MoveActiveWindowPositionExecutionMain(IChangeWindowPosition position, IPluginState pluginState)
         {
-            if (positionMover == null) { throw new ArgumentNullException("positionMover"); }
+            if (position == null) { throw new ArgumentNullException("position"); }
             if (pluginState == null) { throw new ArgumentNullException("pluginState"); }
 
-            _positionMover = positionMover;
+            _position = position;
             _pluginState = pluginState;
         }
 
@@ -21,7 +21,7 @@ namespace nhammerl.WindowOrganizer.ExecutionMains
         {
             if (_pluginState.State)
             {
-                _positionMover.Now();
+                _position.Now();
             }
         }
     }

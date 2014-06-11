@@ -54,11 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internal\ActiveWindowScreenInfosTests.cs" />
-    <Compile Include="Internal\AllActiveScreensTests.cs" />
-    <Compile Include="Internal\GetActiveWindowRectangleTests.cs" />
     <Compile Include="ExecutionMain\MoveActiveWindowPositionsExecutionMainTests.cs" />
-    <Compile Include="Internal\PrimaryScreenDependentScreenHeightTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +67,9 @@
     <Fakes Include="Fakes\System.Windows.Forms.fakes" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Internal\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
