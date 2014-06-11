@@ -10,6 +10,7 @@ namespace nhammerl.GlobalHotkeyManager
         private TextBox _logger;
         private NotifyIcon _trayNotification;
         private System.ComponentModel.IContainer components;
+        private ToolStripMenuItem _autostartMenueItem;
 
         private void InitializeComponent()
         {
@@ -22,8 +23,12 @@ namespace nhammerl.GlobalHotkeyManager
             // trayNotification ContextMenue
             //
 
+            _autostartMenueItem = new ToolStripMenuItem("Autostart",
+                ((Icon) resources.GetObject("autostart")).ToBitmap(), AutoStartMenueItemClicked) {CheckOnClick = true};
+
             var trayNotificationContextMenue = new ContextMenuStrip();
             trayNotificationContextMenue.Items.Add(new ToolStripMenuItem("Configure Hotkeys", ((Icon)resources.GetObject("settings")).ToBitmap(), TrayMenueConfigureHotkeys));
+            trayNotificationContextMenue.Items.Add(_autostartMenueItem);
             trayNotificationContextMenue.Items.Add(new ToolStripMenuItem("Exit", ((Icon)resources.GetObject("exit")).ToBitmap(), TrayMenueExit));
            
             //

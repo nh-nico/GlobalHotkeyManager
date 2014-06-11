@@ -13,7 +13,7 @@ namespace nhammerl.WindowOrganizer.Internal
         {
             get
             {
-                return !_windowTitle.Value.Equals("Startmenü");
+                return (_windowTitle.Value != null && !_windowTitle.Value.Equals("Startmenü"));
             }
         }
     }

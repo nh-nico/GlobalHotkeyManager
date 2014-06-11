@@ -86,9 +86,9 @@ namespace nhammerl.GlobalHotkeyManager
         {
             ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "ALT", Tag = KeyConstants.ALT});
             ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "CTRL", Tag = KeyConstants.CTRL});
-            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "NOMOD", Tag = KeyConstants.NOMOD});
+            //ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "NOMOD", Tag = KeyConstants.NOMOD}); // Not yet supported
             ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "SHIFT", Tag = KeyConstants.SHIFT});
-            ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "WIN", Tag = KeyConstants.WIN});
+            //ModifierDropDown.Items.Add(new ComboBoxItem() {Content = "WIN", Tag = KeyConstants.WIN}); // Not yet suppored.
 
             foreach (var globalHotkeyPlugin in _hotKeyPlugins.Plugins)
             {

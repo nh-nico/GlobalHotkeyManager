@@ -9,7 +9,9 @@ namespace nhammerl.GlobalHotkeyManager.Internal.Plugins
         {
             get
             {
-                var executingDirectory = Environment.CurrentDirectory;
+                var executingDirectory =
+                    Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase)
+                        .Replace("file:\\", "");
 
                 var pluginsDirectory = String.Format("{0}/Plugins", executingDirectory);
 

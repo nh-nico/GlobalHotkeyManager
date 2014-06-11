@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="Internal\Plugins\ILoadPlugins.cs" />
     <Compile Include="Internal\Plugins\IPluginPath.cs" />
+    <Compile Include="Internal\Startup\GlobalHotkeyManagerAutostartRegistryKeyInfo.cs" />
+    <Compile Include="Internal\Startup\IApplicationStartupManager.cs" />
+    <Compile Include="Internal\Startup\CurrentApplicationStartupManager.cs" />
+    <Compile Include="Internal\Startup\IRegistryKey.cs" />
+    <Compile Include="Internal\Startup\IRegistryKeyInfo.cs" />
+    <Compile Include="Internal\Startup\StartupRegistryKey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +115,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\autostart.ico" />
     <Content Include="Icons\exit.ico" />
     <Content Include="Icons\keyboard.ico" />
     <Content Include="Icons\settings.ico" />
