@@ -1,1 +1,9 @@
-Logging to Lib
+1.
+- Unit Tests
+- Kommentare
+- Struktur
+- MD File bearbeiten
+
+2.
+- Logging to Lib
+- Error Handling
