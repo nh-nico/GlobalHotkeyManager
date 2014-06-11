@@ -7,3 +7,5 @@
 2.
 - Logging to Lib
 - Error Handling
+- Autofac
+- Graphology
