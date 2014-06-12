@@ -46,12 +46,11 @@
     <Compile Include="GlobalHotkeyPlugins\SplitActiveWindowHalfAttachBottom.cs" />
     <Compile Include="GlobalHotkeyPlugins\SplitActiveWindowHalfAttachTop.cs" />
     <Compile Include="Internal\ActiveWindowDependendScreen.cs" />
-    <Compile Include="Internal\ActiveWindowTitle.cs">
-      <DependentUpon>IWindowTitle.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Internal\ActiveWindowTitle.cs" />
     <Compile Include="Internal\ActiveWindowTitleNotStartMenuePluginState.cs">
       <DependentUpon>IPluginState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Internal\IWindowTitle.cs" />
     <Compile Include="Internal\SplitActiveWindowToHalfBottomOnCurrentScreen.cs">
       <DependentUpon>IChangeWindowPosition.cs</DependentUpon>
     </Compile>
@@ -60,22 +59,11 @@
     </Compile>
     <Compile Include="Internal\IMoveWindow.cs" />
     <Compile Include="Internal\IPluginState.cs" />
-<<<<<<< HEAD:HotkeyManagerPlugins/WindowOrganizer/WindowOrganizer.csproj
-    <Compile Include="Internal\IWindowPositionMover.cs" />
-    <Compile Include="Internal\IWindowRectangle.cs" />
-    <Compile Include="Internal\IScreens.cs" />
-    <Compile Include="Internal\IWindowScreenInfos.cs" />
-    <Compile Include="Internal\IWindowTitle.cs" />
-    <Compile Include="Internal\ResizeActiveWindowTo1024X768.cs">
-      <DependentUpon>IWindowPositionMover.cs</DependentUpon>
-=======
     <Compile Include="Internal\IScreen.cs" />
     <Compile Include="Internal\IChangeWindowPosition.cs" />
-    <Compile Include="Internal\IWindowTitle.cs" />
     <Compile Include="Internal\MoveActiveWindow.cs" />
     <Compile Include="Internal\ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreen.cs">
       <DependentUpon>IChangeWindowPosition.cs</DependentUpon>
->>>>>>> 7f0500458c789a7b81bd97e4daa621ad3266f28f:_Plugins/WindowOrganizer/WindowOrganizer.csproj
     </Compile>
     <Compile Include="Internal\WindowRectangle.cs" />
     <Compile Include="Internal\IActiveWindow.cs" />

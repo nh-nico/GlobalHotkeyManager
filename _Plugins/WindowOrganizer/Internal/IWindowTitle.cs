@@ -1,4 +1,4 @@
-﻿namespace nhammerl.WindowOrganizer.Internal
+namespace nhammerl.WindowOrganizer.Internal
 {
     public interface IWindowTitle
     {

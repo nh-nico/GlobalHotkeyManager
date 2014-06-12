@@ -54,13 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD:HotkeyManagerPlugins/WindowOrganizer.Tests/WindowOrganizer.Tests.csproj
-    <Compile Include="Internal\ActiveWindowScreenInfosTests.cs" />
-    <Compile Include="Internal\ActiveWindowTitleNotStartmenuePluginStateTests.cs" />
-    <Compile Include="Internal\AllActiveScreensTests.cs" />
-    <Compile Include="Internal\GetActiveWindowRectangleTests.cs" />
-=======
->>>>>>> 7f0500458c789a7b81bd97e4daa621ad3266f28f:_Plugins/WindowOrganizer.Tests/WindowOrganizer.Tests.csproj
     <Compile Include="ExecutionMain\MoveActiveWindowPositionsExecutionMainTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
