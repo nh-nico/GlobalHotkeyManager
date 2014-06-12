@@ -3,8 +3,14 @@ using System.Runtime.InteropServices;
 
 namespace nhammerl.WindowOrganizer.Internal
 {
-    public class EnvironmentActiveWindow : IActiveWindow
+    /// <summary>
+    /// Represents the last active window
+    /// </summary>
+    public class LastActiveWindowHandle : IWindowHandle
     {
+        /// <summary>
+        /// Extracts the last active window handle with helf of user32.dll (GetForegroundWindow)
+        /// </summary>
         public IntPtr Value
         {
             get

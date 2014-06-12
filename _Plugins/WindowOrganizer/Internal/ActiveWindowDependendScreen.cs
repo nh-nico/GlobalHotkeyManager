@@ -5,18 +5,18 @@ namespace nhammerl.WindowOrganizer.Internal
 {
     public class ActiveWindowDependendScreen : IScreen
     {
-        private readonly IActiveWindow _activeWindow;
+        private readonly IWindowHandle _windowHandle;
 
-        public ActiveWindowDependendScreen(IActiveWindow activeWindow)
+        public ActiveWindowDependendScreen(IWindowHandle windowHandle)
         {
-            if (activeWindow == null) throw new ArgumentNullException("activeWindow");
+            if (windowHandle == null) throw new ArgumentNullException("windowHandle");
 
-            _activeWindow = activeWindow;
+            _windowHandle = windowHandle;
         }
 
         public Screen Value
         {
-            get { return Screen.FromHandle(_activeWindow.Value); }
+            get { return Screen.FromHandle(_windowHandle.Value); }
         }
     }
 }

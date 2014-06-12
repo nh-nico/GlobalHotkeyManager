@@ -6,13 +6,13 @@ namespace nhammerl.WindowOrganizer.Internal
 {
     public class ActiveWindowTitle : IWindowTitle
     {
-        private readonly IActiveWindow _activeWindow;
+        private readonly IWindowHandle _windowHandle;
 
-        public ActiveWindowTitle(IActiveWindow activeWindow)
+        public ActiveWindowTitle(IWindowHandle windowHandle)
         {
-            if (activeWindow == null) { throw new ArgumentNullException("activeWindow"); }
+            if (windowHandle == null) { throw new ArgumentNullException("windowHandle"); }
 
-            _activeWindow = activeWindow;
+            _windowHandle = windowHandle;
         }
 
         public string Value
@@ -22,7 +22,7 @@ namespace nhammerl.WindowOrganizer.Internal
                 const int nChars = 256;
                 var buff = new StringBuilder(nChars);
 
-                if (GetWindowText(_activeWindow.Value, buff, nChars) > 0)
+                if (GetWindowText(_windowHandle.Value, buff, nChars) > 0)
                 {
                     return buff.ToString();
                 }

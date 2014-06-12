@@ -42,11 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExecutionMains\IExecutionMain.cs" />
-    <Compile Include="GlobalHotkeyPlugins\ResizeActiveWindowTo1027X768OnTopLeft.cs" />
+    <Compile Include="GlobalHotkeyPlugins\ResizeActiveWindowTo1024X768OnTopLeft.cs" />
     <Compile Include="GlobalHotkeyPlugins\SplitActiveWindowHalfAttachBottom.cs" />
     <Compile Include="GlobalHotkeyPlugins\SplitActiveWindowHalfAttachTop.cs" />
-    <Compile Include="Internal\ActiveWindowDependendScreen.cs" />
-    <Compile Include="Internal\ActiveWindowTitle.cs" />
+    <Compile Include="Internal\ActiveWindowDependendScreen.cs">
+      <DependentUpon>IScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Internal\ActiveWindowTitle.cs">
+      <DependentUpon>IWindowTitle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Internal\ActiveWindowTitleNotStartMenuePluginState.cs">
       <DependentUpon>IPluginState.cs</DependentUpon>
     </Compile>
@@ -61,14 +65,15 @@
     <Compile Include="Internal\IPluginState.cs" />
     <Compile Include="Internal\IScreen.cs" />
     <Compile Include="Internal\IChangeWindowPosition.cs" />
-    <Compile Include="Internal\MoveActiveWindow.cs" />
+    <Compile Include="Internal\MoveActiveWindow.cs">
+      <DependentUpon>IMoveWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Internal\ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreen.cs">
       <DependentUpon>IChangeWindowPosition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Internal\WindowRectangle.cs" />
-    <Compile Include="Internal\IActiveWindow.cs" />
-    <Compile Include="Internal\EnvironmentActiveWindow.cs">
-      <DependentUpon>IActiveWindow.cs</DependentUpon>
+    <Compile Include="Internal\IWindowHandle.cs" />
+    <Compile Include="Internal\LastActiveWindowHandle.cs">
+      <DependentUpon>IWindowHandle.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExecutionMains\MoveActiveWindowPositionExecutionMain.cs">

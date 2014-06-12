@@ -4,20 +4,29 @@ using nhammerlGlobalHotkeyPluginLib;
 
 namespace nhammerl.WindowOrganizer.GlobalHotkeyPlugins
 {
-    public class ResizeActiveWindowTo1027X768OnTopLeft : IGlobalHotkeyPlugin
+    /// <summary>
+    /// Resize the active window to 1024 x 768 pixel and attach it on top left.
+    /// </summary>
+    public class ResizeActiveWindowTo1024X768OnTopLeft : IGlobalHotkeyPlugin
     {
+        /// <summary>
+        /// Name of plugin for the hotkeymanager.
+        /// </summary>
         public string PluginName
         {
             get { return "Resize Window to 1024 X 768 on Top Left of Current Screen"; }
         }
 
+        /// <summary>
+        /// Build IExecutionMain and start logic.
+        /// </summary>
         public void Execute()
         {
-            IActiveWindow activeWindow = new EnvironmentActiveWindow();
-            IScreen screen = new ActiveWindowDependendScreen(activeWindow);
-            IMoveWindow moveWindow = new MoveActiveWindow(activeWindow);
+            IWindowHandle windowHandle = new LastActiveWindowHandle();
+            IScreen screen = new ActiveWindowDependendScreen(windowHandle);
+            IMoveWindow moveWindow = new MoveActiveWindow(windowHandle);
             IChangeWindowPosition position = new ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreen(screen, moveWindow);
-            IWindowTitle windowTitle = new ActiveWindowTitle(activeWindow);
+            IWindowTitle windowTitle = new ActiveWindowTitle(windowHandle);
             IPluginState pluginState = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
             IExecutionMain executionMain = new MoveActiveWindowPositionExecutionMain(position, pluginState);
 

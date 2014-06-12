@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExecutionMain\MoveActiveWindowPositionsExecutionMainTests.cs" />
+    <Compile Include="ExecutionMain\ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreenTests.cs" />
+    <Compile Include="ExecutionMain\SplitActiveWindowToHalfBottomOnCurrentScreenTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

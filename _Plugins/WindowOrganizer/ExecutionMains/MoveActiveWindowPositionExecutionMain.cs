@@ -3,6 +3,9 @@ using System;
 
 namespace nhammerl.WindowOrganizer.ExecutionMains
 {
+    /// <summary>
+    /// Move current active window to other position
+    /// </summary>
     public class MoveActiveWindowPositionExecutionMain : IExecutionMain
     {
         private readonly IChangeWindowPosition _position;
@@ -17,6 +20,9 @@ namespace nhammerl.WindowOrganizer.ExecutionMains
             _pluginState = pluginState;
         }
 
+        /// <summary>
+        /// Dependend on IChangeWindowPosition, move the active window.
+        /// </summary>
         public void Run()
         {
             if (_pluginState.State)

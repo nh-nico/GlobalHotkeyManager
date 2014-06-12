@@ -5,18 +5,18 @@ namespace nhammerl.WindowOrganizer.Internal
 {
     public class MoveActiveWindow : IMoveWindow
     {
-        private readonly IActiveWindow _activeWindow;
+        private readonly IWindowHandle _windowHandle;
 
-        public MoveActiveWindow(IActiveWindow activeWindow)
+        public MoveActiveWindow(IWindowHandle windowHandle)
         {
-            if (activeWindow == null) throw new ArgumentNullException("activeWindow");
+            if (windowHandle == null) throw new ArgumentNullException("windowHandle");
 
-            _activeWindow = activeWindow;
+            _windowHandle = windowHandle;
         }
 
         public void To(int x, int y, int with, int height)
         {
-            MoveWindow(_activeWindow.Value, x, y, with, height, true);
+            MoveWindow(_windowHandle.Value, x, y, with, height, true);
         }
 
         [DllImport("user32.dll")]
