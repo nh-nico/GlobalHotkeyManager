@@ -67,15 +67,11 @@
       <DependentUpon>IWindowPositionMover.cs</DependentUpon>
     </Compile>
     <Compile Include="Internal\IPluginState.cs" />
-    <Compile Include="Internal\IScreenHeight.cs" />
     <Compile Include="Internal\IWindowPositionMover.cs" />
     <Compile Include="Internal\IWindowRectangle.cs" />
     <Compile Include="Internal\IScreens.cs" />
     <Compile Include="Internal\IWindowScreenInfos.cs" />
     <Compile Include="Internal\IWindowTitle.cs" />
-    <Compile Include="Internal\PrimaryScreenDependentScreenHeight.cs">
-      <DependentUpon>IScreenHeight.cs</DependentUpon>
-    </Compile>
     <Compile Include="Internal\ResizeActiveWindowTo1024X768.cs">
       <DependentUpon>IWindowPositionMover.cs</DependentUpon>
     </Compile>

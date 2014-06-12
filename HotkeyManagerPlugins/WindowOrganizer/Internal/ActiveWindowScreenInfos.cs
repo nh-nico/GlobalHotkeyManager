@@ -22,9 +22,11 @@ namespace nhammerl.WindowOrganizer.Internal
         {
             currentWindowTopLeftCorner = 0;
             var currentScreenIndex = 0;
+            var xUpperLeft = _windowRectangle.Value.xUpperLeft;
+
             foreach (var screen in _screens.List)
             {
-                if (_windowRectangle.Value.xUpperLeft >= screen.WorkingArea.Width + currentWindowTopLeftCorner)
+                if (xUpperLeft >= screen.WorkingArea.Width + currentWindowTopLeftCorner)
                 {
                     currentWindowTopLeftCorner += screen.WorkingArea.Width;
                     currentScreenIndex++;

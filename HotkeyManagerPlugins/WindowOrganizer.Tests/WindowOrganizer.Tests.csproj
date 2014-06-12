@@ -55,10 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\ActiveWindowScreenInfosTests.cs" />
+    <Compile Include="Internal\ActiveWindowTitleNotStartmenuePluginStateTests.cs" />
     <Compile Include="Internal\AllActiveScreensTests.cs" />
     <Compile Include="Internal\GetActiveWindowRectangleTests.cs" />
     <Compile Include="ExecutionMain\MoveActiveWindowPositionsExecutionMainTests.cs" />
-    <Compile Include="Internal\PrimaryScreenDependentScreenHeightTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

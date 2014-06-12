@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Fakes;
 using Xunit;
-using Xunit.Extensions;
 
 namespace WindowOrganizer.Tests.Internal
 {
@@ -100,8 +99,9 @@ namespace WindowOrganizer.Tests.Internal
 
                 var screen1 = new ShimScreen { WorkingAreaGet = () => new Rectangle(100, 200, 300, 400) };
                 var screen2 = new ShimScreen { WorkingAreaGet = () => new Rectangle(111, 222, 333, 444) };
+                var screen3 = new ShimScreen { WorkingAreaGet = () => new Rectangle(123, 124, 456, 786) };
 
-                screens.List.Returns(new Screen[] { screen1, screen2 });
+                screens.List.Returns(new Screen[] { screen1, screen2, screen3 });
 
                 var sut = new ActiveWindowScreenInfos(screens, windowRectangle);
                 // Act
@@ -114,43 +114,6 @@ namespace WindowOrganizer.Tests.Internal
                 Assert.Equal(300, topLeft);
                 Assert.Equal(screen2, currentScreen);
             }
-        }
-    }
-
-    public class ActiveWindowTitleNotStartmenuePluginStateTests
-    {
-        [Fact]
-        public void State_WindowTitleEqualsStartMenü_ReturnsFalse()
-        {
-            // Arrange
-            var windowTitle = Substitute.For<IWindowTitle>();
-            windowTitle.Value.Returns("Startmenü");
-
-            var sut = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
-            // Act
-
-            var result = sut.State;
-            // Assert
-            Assert.False(result);
-        }
-
-        [Theory,
-        InlineData("StartDings"),
-        InlineData("Wurzelbrumf"),
-        InlineData("Foo"),
-        InlineData("bar")]
-        public void State_WindowTitleNotEqualsStartMenü_ReturnsTrue(string title)
-        {
-            // Arrange
-            var windowTitle = Substitute.For<IWindowTitle>();
-            windowTitle.Value.Returns(title);
-
-            var sut = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
-            // Act
-
-            var result = sut.State;
-            // Assert
-            Assert.True(result);
         }
     }
 }

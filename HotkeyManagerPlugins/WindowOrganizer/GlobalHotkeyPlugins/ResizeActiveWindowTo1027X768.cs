@@ -17,8 +17,7 @@ namespace nhammerl.WindowOrganizer.GlobalHotkeyPlugins
             IScreens screens = new AllActiveScreens();
             IWindowRectangle windowRectangle = new ActiveWindowRectangle(activeWindow);
             IWindowScreenInfos windowScreenInfos = new ActiveWindowScreenInfos(screens, windowRectangle);
-            IScreenHeight screenHeight = new PrimaryScreenDependentScreenHeight();
-            IWindowPositionMover positionMover = new ResizeActiveWindowTo1024X768(activeWindow, windowScreenInfos, screenHeight);
+            IWindowPositionMover positionMover = new ResizeActiveWindowTo1024X768(activeWindow, windowScreenInfos);
             IWindowTitle windowTitle = new ActiveWindowTitle(activeWindow);
             IPluginState pluginState = new ActiveWindowTitleNotStartMenuePluginState(windowTitle);
             IExecutionMain executionMain = new MoveActiveWindowPositionExecutionMain(positionMover, pluginState);

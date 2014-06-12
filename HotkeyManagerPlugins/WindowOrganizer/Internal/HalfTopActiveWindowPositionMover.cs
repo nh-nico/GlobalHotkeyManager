@@ -8,17 +8,14 @@ namespace nhammerl.WindowOrganizer.Internal
     {
         private readonly IActiveWindow _activeWindow;
         private readonly IWindowScreenInfos _windowScreenInfos;
-        private readonly IScreenHeight _screenHeight;
 
-        public HalfTopActiveWindowPositionMover(IActiveWindow activeWindow, IWindowScreenInfos windowScreenInfos, IScreenHeight screenHeight)
+        public HalfTopActiveWindowPositionMover(IActiveWindow activeWindow, IWindowScreenInfos windowScreenInfos)
         {
             if (activeWindow == null) { throw new ArgumentNullException("activeWindow"); }
             if (windowScreenInfos == null) { throw new ArgumentNullException("windowScreenInfos"); }
-            if (screenHeight == null) { throw new ArgumentNullException("screenHeight"); }
 
             _activeWindow = activeWindow;
             _windowScreenInfos = windowScreenInfos;
-            _screenHeight = screenHeight;
         }
 
         public void Now()
@@ -30,7 +27,7 @@ namespace nhammerl.WindowOrganizer.Internal
             MoveWindow(
                 _activeWindow.Value,
                 currentScreenTopLeft,
-                _screenHeight.ForScreen(currentScreen),
+                currentScreen.WorkingArea.Y,
                 currentScreen.WorkingArea.Width,
                 currentScreen.WorkingArea.Height / 2,
                 true);
