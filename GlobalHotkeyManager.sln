@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeyLib", "HotkeyLib\HotkeyLib.csproj", "{09823DA8-C587-4363-95F1-CD99F4D0A678}"
 EndProject
@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalHotkeyManager", "Glob
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalHotkeyPluginLib", "GlobalHotkeyPluginLib\GlobalHotkeyPluginLib.csproj", "{BC16D7E1-F7CE-44CF-B33C-ADC26A0486F7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GlobalHotkeyPlugins", "GlobalHotkeyPlugins", "{F8C71530-CB38-48F1-ABE0-25F550F7352A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Plugins", "_Plugins", "{F8C71530-CB38-48F1-ABE0-25F550F7352A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowOrganizer", "HotkeyManagerPlugins\WindowOrganizer\WindowOrganizer.csproj", "{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowOrganizer", "_Plugins\WindowOrganizer\WindowOrganizer.csproj", "{FA62BCD8-B8F0-49AC-BA6A-B1F628E81BB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowOrganizer.Tests", "HotkeyManagerPlugins\WindowOrganizer.Tests\WindowOrganizer.Tests.csproj", "{E8949D86-98F1-4522-B961-BB4F83D94E63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowOrganizer.Tests", "_Plugins\WindowOrganizer.Tests\WindowOrganizer.Tests.csproj", "{E8949D86-98F1-4522-B961-BB4F83D94E63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

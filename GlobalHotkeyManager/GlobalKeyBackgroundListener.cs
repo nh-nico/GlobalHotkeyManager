@@ -1,11 +1,11 @@
-﻿using nhammerl.GlobalHotkeyManager.Data.Configuration;
-using nhammerl.GlobalHotkeyManager.Plugins;
+﻿using nhammerl.GlobalHotkeyManager.Internal.Data.Configuration;
+using nhammerl.GlobalHotkeyManager.Internal.Plugins;
+using nhammerl.GlobalHotkeyManager.Internal.Startup;
 using nhammerl.HotkeyLib;
 using nhammerlGlobalHotkeyPluginLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -19,6 +19,8 @@ namespace nhammerl.GlobalHotkeyManager
         private readonly HotkeyConfigurationWindow _hotkeyConfigurationWindow;
         private readonly IConfiguredHotkeys _configuredHotkeys;
         private readonly IEnumerable<IGlobalHotkeyPlugin> _plugins;
+        private readonly IApplicationStartupManager _applicationStartupManager;
+        private readonly IRegistryKeyInfo _registryKeyInfo;
 
         #endregion Private Members
 
@@ -38,6 +40,18 @@ namespace nhammerl.GlobalHotkeyManager
             // Init Plugins
             var loadPlugins = new GlobalHotkeyManagerLoadPlugins(new HotkeyManagerPluginsPath());
             _plugins = loadPlugins.Plugins;
+
+            // Init Startup Manager & KeyInfos
+            var startupKey = new StartupRegistryKey();
+            _applicationStartupManager = new CurrentApplicationStartupManager(startupKey);
+            _registryKeyInfo = new GlobalHotkeyManagerAutostartRegistryKeyInfo(startupKey);
+
+            // Check Autostart if already Registered
+            string registryValue;
+            if (_registryKeyInfo.TryGetValue(out registryValue))
+            {
+                _autostartMenueItem.Checked = true;
+            }
 
             // EventHandler
             Shown += BackgroundListenerFromShow;
@@ -121,6 +135,18 @@ namespace nhammerl.GlobalHotkeyManager
             RegisterGlobalKeys();
         }
 
+        private void AutoStartMenueItemClicked(object sender, EventArgs e)
+        {
+            if (this._autostartMenueItem.Checked)
+            {
+                _applicationStartupManager.Register();
+            }
+            else
+            {
+                _applicationStartupManager.Unregister();
+            }
+        }
+
         #endregion TrayMenue Events
 
         #region HotKeyWorker
@@ -171,67 +197,21 @@ namespace nhammerl.GlobalHotkeyManager
 
                 if (hotKey != null)
                 {
-                    hotKey.RunAction();
+                    try
+                    {
+
+                        hotKey.RunAction();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("NH: " + ex.Message);
+                    }
                 }
             }
             base.WndProc(ref m);
         }
 
         #endregion HotKeyWorker
-
-        #region HotKeyActions
-
-        private void HandleAltArrowUp()
-        {
-            Log("ALT+ArrowUp");
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 0, 1920, 540, true);
-        }
-
-        private void HandleAltArrowDown()
-        {
-            Log("ALT+ArrowDown");
-
-            Log("ALT+ArrowUp");
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 540, 1920, 540, true);
-        }
-
-        private void HandleAltArrowLeft()
-        {
-            Log("ALT+ArrowLeft");
-
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 0, 500, 500, true);
-        }
-
-        private void HandleAltArrowRight()
-        {
-            Log("ALT+ArrowRight");
-
-            var x = GetForegroundWindow();
-
-            var screen = Screen.FromHandle(x);
-
-            MoveWindow(x, 0, 0, 1920, 1080, true);
-        }
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
-
-        #endregion HotKeyActions
 
         #region Debug and Log
 

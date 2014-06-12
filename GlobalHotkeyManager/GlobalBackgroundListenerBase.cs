@@ -1,3 +1,5 @@
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 using nhammerl.GlobalHotkeyManager.Properties;
 
@@ -8,6 +10,7 @@ namespace nhammerl.GlobalHotkeyManager
         private TextBox _logger;
         private NotifyIcon _trayNotification;
         private System.ComponentModel.IContainer components;
+        private ToolStripMenuItem _autostartMenueItem;
 
         private void InitializeComponent()
         {
@@ -19,18 +22,23 @@ namespace nhammerl.GlobalHotkeyManager
             //
             // trayNotification ContextMenue
             //
-            var trayNotificationContextMenue = new ContextMenu();
-            trayNotificationContextMenue.MenuItems.Add(new MenuItem("Configure Hotkeys", TrayMenueConfigureHotkeys));
-            trayNotificationContextMenue.MenuItems.Add(new MenuItem("Exit", TrayMenueExit));
 
+            _autostartMenueItem = new ToolStripMenuItem("Autostart",
+                ((Icon) resources.GetObject("autostart")).ToBitmap(), AutoStartMenueItemClicked) {CheckOnClick = true};
+
+            var trayNotificationContextMenue = new ContextMenuStrip();
+            trayNotificationContextMenue.Items.Add(new ToolStripMenuItem("Configure Hotkeys", ((Icon)resources.GetObject("settings")).ToBitmap(), TrayMenueConfigureHotkeys));
+            trayNotificationContextMenue.Items.Add(_autostartMenueItem);
+            trayNotificationContextMenue.Items.Add(new ToolStripMenuItem("Exit", ((Icon)resources.GetObject("exit")).ToBitmap(), TrayMenueExit));
+           
             //
             // trayNotification
             //
-            this._trayNotification.Icon = ((System.Drawing.Icon)(resources.GetObject("_trayNotification.Icon")));
+            this._trayNotification.Icon = ((Icon)(resources.GetObject("keyboard")));
             this._trayNotification.Text = Resources.GlobalKeyBackgroundListener_InitializeComponent_GlobalHotkeyManager;
             this._trayNotification.Visible = true;
-            this._trayNotification.ContextMenu = trayNotificationContextMenue;
-
+            this._trayNotification.ContextMenuStrip = trayNotificationContextMenue;
+            
             //
             // Logger
             //

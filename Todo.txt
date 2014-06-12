@@ -1,3 +1,11 @@
-- nur fenster kein windows 8 fenster als aktives fenster erkennen!
-- Manager Testen und Struktur überarbeiten
---> rein in Github :))
+1.
+- Unit Tests
+- Kommentare
+- Struktur
+- MD File bearbeiten
+
+2.
+- Logging to Lib
+- Error Handling
+- Autofac
+- Graphology

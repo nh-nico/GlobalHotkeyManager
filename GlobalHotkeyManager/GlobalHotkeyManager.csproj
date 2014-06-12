@@ -52,13 +52,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Configuration\HotkeyConfiguration.cs" />
-    <Compile Include="Data\Configuration\HotkeyConfigurationPath.cs">
+    <Compile Include="Internal\Data\Configuration\HotkeyConfiguration.cs" />
+    <Compile Include="Internal\Data\Configuration\HotkeyConfigurationPath.cs">
       <DependentUpon>IConfigurationPath.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\Configuration\IConfigurationPath.cs" />
-    <Compile Include="Data\Configuration\IConfiguredHotkeys.cs" />
-    <Compile Include="Data\Configuration\XmlConfiguredHotkeys.cs">
+    <Compile Include="Internal\Data\Configuration\IConfigurationPath.cs" />
+    <Compile Include="Internal\Data\Configuration\IConfiguredHotkeys.cs" />
+    <Compile Include="Internal\Data\Configuration\XmlConfiguredHotkeys.cs">
       <DependentUpon>IConfiguredHotkeys.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalKeyBackgroundListener.cs">
@@ -67,14 +67,20 @@
     <Compile Include="HotkeyConfigurationWindow.xaml.cs">
       <DependentUpon>HotkeyConfigurationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\GlobalHotkeyManagerLoadPlugins.cs">
+    <Compile Include="Internal\Plugins\GlobalHotkeyManagerLoadPlugins.cs">
       <DependentUpon>ILoadPlugins.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\HotkeyManagerPluginsPath.cs">
+    <Compile Include="Internal\Plugins\HotkeyManagerPluginsPath.cs">
       <DependentUpon>IPluginPath.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\ILoadPlugins.cs" />
-    <Compile Include="Plugins\IPluginPath.cs" />
+    <Compile Include="Internal\Plugins\ILoadPlugins.cs" />
+    <Compile Include="Internal\Plugins\IPluginPath.cs" />
+    <Compile Include="Internal\Startup\GlobalHotkeyManagerAutostartRegistryKeyInfo.cs" />
+    <Compile Include="Internal\Startup\IApplicationStartupManager.cs" />
+    <Compile Include="Internal\Startup\CurrentApplicationStartupManager.cs" />
+    <Compile Include="Internal\Startup\IRegistryKey.cs" />
+    <Compile Include="Internal\Startup\IRegistryKeyInfo.cs" />
+    <Compile Include="Internal\Startup\StartupRegistryKey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +89,7 @@
     </Compile>
     <EmbeddedResource Include="GlobalKeyBackgroundListener.resx">
       <DependentUpon>GlobalKeyBackgroundListener.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,7 +114,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Icons\autostart.ico" />
+    <Content Include="Icons\exit.ico" />
+    <Content Include="Icons\keyboard.ico" />
+    <Content Include="Icons\settings.ico" />
+    <None Include="Resources\_exitIcon.ico" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GlobalHotkeyPluginLib\GlobalHotkeyPluginLib.csproj">
       <Project>{bc16d7e1-f7ce-44cf-b33c-adc26a0486f7}</Project>
@@ -117,9 +130,6 @@
       <Project>{09823da8-c587-4363-95f1-cd99f4d0a678}</Project>
       <Name>HotkeyLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Icons\tools.ico" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="HotkeyConfigurationWindow.xaml">
