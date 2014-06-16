@@ -10,7 +10,7 @@ So that´s are the first features (plugins) of this manager.
 ----------
 
 
-*Application runs in Background.*
+*Application runs in background.*
 
 ![](https://cloud.githubusercontent.com/assets/2332468/3293951/a6014f0a-f5a1-11e3-91a8-6da97783a72b.png)
 
