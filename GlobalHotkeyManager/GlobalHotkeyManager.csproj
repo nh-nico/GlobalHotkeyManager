@@ -53,11 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\Data\Configuration\HotkeyConfiguration.cs" />
-    <Compile Include="Internal\Data\Configuration\HotkeyConfigurationPath.cs">
-      <DependentUpon>IConfigurationPath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Internal\Data\Configuration\IConfigurationPath.cs" />
+    <Compile Include="Internal\Data\Configuration\HotkeyXmlConfigurationPath.cs" />
     <Compile Include="Internal\Data\Configuration\IConfiguredHotkeys.cs" />
+    <Compile Include="Internal\Data\Configuration\IXmlConfigurationPath.cs" />
     <Compile Include="Internal\Data\Configuration\XmlConfiguredHotkeys.cs">
       <DependentUpon>IConfiguredHotkeys.cs</DependentUpon>
     </Compile>
