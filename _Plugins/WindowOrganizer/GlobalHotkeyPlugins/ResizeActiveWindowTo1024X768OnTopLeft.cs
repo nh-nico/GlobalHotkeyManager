@@ -14,7 +14,7 @@ namespace nhammerl.WindowOrganizer.GlobalHotkeyPlugins
         /// </summary>
         public string PluginName
         {
-            get { return "Resize Window to 1024 X 768 on Top Left of Current Screen"; }
+            get { return "Resize window to 1024 X 768 on top left of current screen"; }
         }
 
         /// <summary>

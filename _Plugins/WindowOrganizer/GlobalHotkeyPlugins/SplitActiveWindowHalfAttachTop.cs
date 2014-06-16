@@ -14,7 +14,7 @@ namespace nhammerl.WindowOrganizer.GlobalHotkeyPlugins
         /// </summary>
         public string PluginName
         {
-            get { return "Split Active Window half and Attach on Top"; }
+            get { return "Split active window half and attach on top"; }
         }
 
         /// <summary>
