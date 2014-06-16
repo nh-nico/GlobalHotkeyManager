@@ -5,16 +5,16 @@ using System.Drawing;
 using System.Windows.Forms.Fakes;
 using Xunit.Extensions;
 
-namespace WindowOrganizer.Tests.ExecutionMain
+namespace WindowOrganizer.Tests.Internal
 {
-    public class SplitActiveWindowToHalfBottomOnCurrentScreenTests
+    public class SplitActiveWindowToHalfTopOnCurrentScreenTests
     {
         [Theory]
         [InlineData(0, 0, 10, 10)]
         [InlineData(10, 10, 15, 8)]
         [InlineData(20, 20, 485, 695)]
         [InlineData(5697, 1358, 1254, 569)]
-        public void Now_CallsMoveWindowWithScreenWorkingAreaXAndYWith1024AndHeight768(
+        public void Now_CallsMoveWindowWithScreenWorkingAreaXAndYWorkingWidthAndHalfWorkingHeight(
             int workingX,
             int workingY,
             int workingWidth,
@@ -33,13 +33,13 @@ namespace WindowOrganizer.Tests.ExecutionMain
                 };
                 screen.Value.Returns(screenShim);
 
-                var sut = new SplitActiveWindowToHalfBottomOnCurrentScreen(screen, moveWindow);
+                var sut = new SplitActiveWindowToHalfTopOnCurrentScreen(screen, moveWindow);
 
                 // Act
                 sut.Now();
 
                 // Assert
-                moveWindow.Received(1).To(workingX, workingY + halfWorkingHeight, workingWidth, halfWorkingHeight);
+                moveWindow.Received(1).To(workingX, workingY, workingWidth, halfWorkingHeight);
             }
         }
     }

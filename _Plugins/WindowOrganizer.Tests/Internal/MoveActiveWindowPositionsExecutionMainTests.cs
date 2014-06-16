@@ -3,7 +3,7 @@ using nhammerl.WindowOrganizer.Internal;
 using NSubstitute;
 using Xunit;
 
-namespace WindowOrganizer.Tests.ExecutionMain
+namespace WindowOrganizer.Tests.Internal
 {
     public class MoveActiveWindowPositionsExecutionMainTests
     {

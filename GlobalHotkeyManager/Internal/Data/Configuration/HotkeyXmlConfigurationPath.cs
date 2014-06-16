@@ -1,13 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Xml;
-using nhammerl.GlobalHotkeyManager.Annotations;
-using nhammerl.GlobalHotkeyManager.Internal.Startup;
 
 namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
 {
-    public class HotkeyConfigurationPath : IConfigurationPath
+    /// <summary>
+    /// Path of the configured hotkey xml file.
+    /// </summary>
+    public class HotkeyXmlConfigurationPath : IXmlConfigurationPath
     {
+        /// <summary>
+        /// Path to xml file.
+        /// </summary>
         public string Value
         {
             get

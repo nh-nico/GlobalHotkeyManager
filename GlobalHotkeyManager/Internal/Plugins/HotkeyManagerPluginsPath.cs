@@ -3,8 +3,14 @@ using System.IO;
 
 namespace nhammerl.GlobalHotkeyManager.Internal.Plugins
 {
+    /// <summary>
+    /// Hotkeymanager plugin path
+    /// </summary>
     public class HotkeyManagerPluginsPath : IPluginPath
     {
+        /// <summary>
+        /// Path to plugins.
+        /// </summary>
         public string Value
         {
             get

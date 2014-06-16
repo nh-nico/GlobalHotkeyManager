@@ -20,12 +20,14 @@ namespace nhammerl.GlobalHotkeyManager
         private readonly IConfiguredHotkeys _configuredHotkeys;
         private readonly IEnumerable<IGlobalHotkeyPlugin> _plugins;
         private readonly IApplicationStartupManager _applicationStartupManager;
-        private readonly IRegistryKeyInfo _registryKeyInfo;
 
         #endregion Private Members
 
         #region Constructor
 
+        /// <summary>
+        /// Constructor of the class.
+        /// </summary>
         public GlobalKeyBackgroundListener()
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace nhammerl.GlobalHotkeyManager
             _hotkeyConfigurationWindow = new HotkeyConfigurationWindow();
 
             // Init configuredHotkey
-            _configuredHotkeys = new XmlConfiguredHotkeys(new HotkeyConfigurationPath());
+            _configuredHotkeys = new XmlConfiguredHotkeys(new HotkeyXmlConfigurationPath());
 
             // Init Plugins
             var loadPlugins = new GlobalHotkeyManagerLoadPlugins(new HotkeyManagerPluginsPath());
@@ -44,11 +46,11 @@ namespace nhammerl.GlobalHotkeyManager
             // Init Startup Manager & KeyInfos
             var startupKey = new StartupRegistryKey();
             _applicationStartupManager = new CurrentApplicationStartupManager(startupKey);
-            _registryKeyInfo = new GlobalHotkeyManagerAutostartRegistryKeyInfo(startupKey);
+            var registryKeyInfo = new GlobalHotkeyManagerAutostartRegistryKeyInfo(startupKey);
 
             // Check Autostart if already Registered
             string registryValue;
-            if (_registryKeyInfo.TryGetValue(out registryValue))
+            if (registryKeyInfo.TryGetValue(out registryValue))
             {
                 _autostartMenueItem.Checked = true;
             }
@@ -156,6 +158,7 @@ namespace nhammerl.GlobalHotkeyManager
         /// </summary>
         public void BuildGlobalKeys()
         {
+            // Clear all configured hotkeys and re-register after configuration.
             _hotKeys.Clear();
 
             foreach (var hotKey in _configuredHotkeys.List)
@@ -199,7 +202,6 @@ namespace nhammerl.GlobalHotkeyManager
                 {
                     try
                     {
-
                         hotKey.RunAction();
                     }
                     catch (Exception ex)

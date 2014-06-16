@@ -4,10 +4,17 @@ using System.Text;
 
 namespace nhammerl.WindowOrganizer.Internal
 {
+    /// <summary>
+    /// Window title for current active window.
+    /// </summary>
     public class ActiveWindowTitle : IWindowTitle
     {
         private readonly IWindowHandle _windowHandle;
 
+        /// <summary>
+        /// Constructor of the class.
+        /// </summary>
+        /// <param name="windowHandle"></param>
         public ActiveWindowTitle(IWindowHandle windowHandle)
         {
             if (windowHandle == null) { throw new ArgumentNullException("windowHandle"); }
@@ -15,6 +22,9 @@ namespace nhammerl.WindowOrganizer.Internal
             _windowHandle = windowHandle;
         }
 
+        /// <summary>
+        /// Title of active window.
+        /// </summary>
         public string Value
         {
             get

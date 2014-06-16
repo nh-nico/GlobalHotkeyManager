@@ -5,26 +5,33 @@ using System.Xml;
 
 namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
 {
+    /// <summary>
+    /// XmlParsed hotkeys.
+    /// </summary>
     public class XmlConfiguredHotkeys : IConfiguredHotkeys
     {
-        private readonly IConfigurationPath _configurationPath;
+        private readonly IXmlConfigurationPath _xmlConfigurationPath;
 
-        public XmlConfiguredHotkeys(IConfigurationPath configurationPath)
+        /// <summary>
+        /// Constructor of the class.
+        /// </summary>
+        /// <param name="xmlConfigurationPath"></param>
+        public XmlConfiguredHotkeys(IXmlConfigurationPath xmlConfigurationPath)
         {
-            if (configurationPath == null) { throw new ArgumentNullException("configurationPath"); }
+            if (xmlConfigurationPath == null) { throw new ArgumentNullException("xmlConfigurationPath"); }
 
-            _configurationPath = configurationPath;
+            _xmlConfigurationPath = xmlConfigurationPath;
         }
 
         /// <summary>
-        /// Retrun the Configured Hotkeys
+        /// IEnumerable from xml configured hotkeys.
         /// </summary>
         public IEnumerable<HotkeyConfiguration> List
         {
             get
             {
                 var configXml = new XmlDocument();
-                configXml.Load(_configurationPath.Value);
+                configXml.Load(_xmlConfigurationPath.Value);
 
                 var configuredHotKeys = configXml.GetElementsByTagName("HotkeyConfiguration");
 
@@ -51,7 +58,7 @@ namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
         public void AddHotkey(HotkeyConfiguration hotkey)
         {
             var configXml = new XmlDocument();
-            configXml.Load(_configurationPath.Value);
+            configXml.Load(_xmlConfigurationPath.Value);
 
             var configParent = configXml.SelectSingleNode("/HotkeyConfigurations");
 
@@ -76,7 +83,7 @@ namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
             configXmlNode.Attributes.Append(pluginNameAttribute);
 
             configParent.AppendChild(configXmlNode);
-            configXml.Save(_configurationPath.Value);
+            configXml.Save(_xmlConfigurationPath.Value);
         }
 
         /// <summary>
@@ -86,7 +93,7 @@ namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
         public void RemoveHotkey(Guid hotKeyId)
         {
             var configXml = new XmlDocument();
-            configXml.Load(_configurationPath.Value);
+            configXml.Load(_xmlConfigurationPath.Value);
 
             var configParent = configXml.SelectSingleNode("/HotkeyConfigurations");
 
@@ -100,7 +107,7 @@ namespace nhammerl.GlobalHotkeyManager.Internal.Data.Configuration
             if (selectedConfig != null)
             {
                 configParent.RemoveChild(selectedConfig);
-                configXml.Save(_configurationPath.Value);
+                configXml.Save(_xmlConfigurationPath.Value);
             }
         }
     }

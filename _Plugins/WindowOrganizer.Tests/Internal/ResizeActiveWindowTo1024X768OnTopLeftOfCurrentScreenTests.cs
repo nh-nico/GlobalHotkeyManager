@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Windows.Forms.Fakes;
 using Xunit.Extensions;
 
-namespace WindowOrganizer.Tests.ExecutionMain
+namespace WindowOrganizer.Tests.Internal
 {
     public class ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreenTests
     {

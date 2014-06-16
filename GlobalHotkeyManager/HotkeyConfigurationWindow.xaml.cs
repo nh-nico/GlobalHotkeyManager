@@ -60,7 +60,7 @@ namespace nhammerl.GlobalHotkeyManager
             ConfiguredHotkeys = new ObservableCollection<HotkeyConfiguration>();
 
             // Init XmlConfigurations
-            _xmlConfiguredHotkeys = new XmlConfiguredHotkeys(new HotkeyConfigurationPath());
+            _xmlConfiguredHotkeys = new XmlConfiguredHotkeys(new HotkeyXmlConfigurationPath());
 
             // Init PluginLoader
             _hotKeyPlugins = new GlobalHotkeyManagerLoadPlugins(new HotkeyManagerPluginsPath());

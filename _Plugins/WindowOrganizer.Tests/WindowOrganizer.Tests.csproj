@@ -54,9 +54,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExecutionMain\MoveActiveWindowPositionsExecutionMainTests.cs" />
-    <Compile Include="ExecutionMain\ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreenTests.cs" />
-    <Compile Include="ExecutionMain\SplitActiveWindowToHalfBottomOnCurrentScreenTests.cs" />
+    <Compile Include="Internal\MoveActiveWindowPositionsExecutionMainTests.cs" />
+    <Compile Include="Internal\ResizeActiveWindowTo1024X768OnTopLeftOfCurrentScreenTests.cs" />
+    <Compile Include="Internal\SplitActiveWindowToHalfBottomOnCurrentScreenTests.cs" />
+    <Compile Include="Internal\SplitActiveWindowToHalfTopOnCurrentScreenTests.cs" />
+    <Compile Include="Internal\ActiveWindowTitleNoStartMenuePluginState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,7 +72,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Internal\" />
+    <Folder Include="ExecutionMain\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,7 +1,7 @@
+using nhammerl.GlobalHotkeyManager.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using nhammerl.GlobalHotkeyManager.Properties;
 
 namespace nhammerl.GlobalHotkeyManager
 {
@@ -24,13 +24,13 @@ namespace nhammerl.GlobalHotkeyManager
             //
 
             _autostartMenueItem = new ToolStripMenuItem("Autostart",
-                ((Icon) resources.GetObject("autostart")).ToBitmap(), AutoStartMenueItemClicked) {CheckOnClick = true};
+                ((Icon)resources.GetObject("autostart")).ToBitmap(), AutoStartMenueItemClicked) { CheckOnClick = true };
 
             var trayNotificationContextMenue = new ContextMenuStrip();
             trayNotificationContextMenue.Items.Add(new ToolStripMenuItem("Configure Hotkeys", ((Icon)resources.GetObject("settings")).ToBitmap(), TrayMenueConfigureHotkeys));
             trayNotificationContextMenue.Items.Add(_autostartMenueItem);
             trayNotificationContextMenue.Items.Add(new ToolStripMenuItem("Exit", ((Icon)resources.GetObject("exit")).ToBitmap(), TrayMenueExit));
-           
+
             //
             // trayNotification
             //
@@ -38,7 +38,7 @@ namespace nhammerl.GlobalHotkeyManager
             this._trayNotification.Text = Resources.GlobalKeyBackgroundListener_InitializeComponent_GlobalHotkeyManager;
             this._trayNotification.Visible = true;
             this._trayNotification.ContextMenuStrip = trayNotificationContextMenue;
-            
+
             //
             // Logger
             //
