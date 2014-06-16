@@ -1,6 +1,6 @@
 ## Global Hotkey Manager ##
 
-**Global HotKey Manager** was developed to easily execute own code on an global registered hotkey.
+**Global HotKey Manager** was developed to easily execute own code on global registered hotkeys.
 
 
 My main reason why i developed this was the need to split my windows in horizontal half and attach it to the top or bottom of the screen where the window is currently active.
